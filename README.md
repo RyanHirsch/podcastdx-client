@@ -1,6 +1,10 @@
 
 # Podcast Index Client
 
+The is a client for interacting with <https://podcastindex.org/>. In order for this to be useful, you need to get a developer `API KEY` and `API SECRET` from <https://api.podcastindex.org>
+
+This includes typescript types as well as JSDoc strings that should make interacting with the API easier.
+
 ## Installation
 
 ```sh
@@ -10,6 +14,9 @@ npm -i podcastdx-client
 ## Usage
 
 ```ts
+import PodcastIndexClient from "podcastdx-client";
+
+// assumes you have an your key and secret set as environment variables
 const client = new PodcastIndexClient({
   key: process.env.API_KEY!,
   secret: process.env.API_SECRET!,
