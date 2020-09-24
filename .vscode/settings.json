@@ -1,0 +1,9 @@
+{
+  "cSpell.words": [
+    "Photostream",
+    "prebuild",
+    "precommit",
+    "respawn"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
