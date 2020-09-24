@@ -9,7 +9,7 @@
     "prettier:check": "yarn prettier:base -- --list-different \"src/**/*.{ts,tsx}\"",
     "prettier:write": "yarn prettier:base -- --write \"src/**/*.{ts,tsx}\"",
     "start": "node dist/index.js",
-    "prepublish": "yarn lint && yarn build",
+    "prepublishOnly": "yarn lint && yarn build",
     "prebuild": "rimraf dist",
     "build": "tsc",
     "test": "jest",
