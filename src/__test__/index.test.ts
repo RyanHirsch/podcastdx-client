@@ -11,7 +11,11 @@ describe("API requests", () => {
 
   it("fetches latest feeds", async () => {
     const recentFeeds = await client.recentFeeds();
-
     expect(recentFeeds).toHaveProperty("count", 40);
+  });
+
+  it("fetches latest feeds with a max", async () => {
+    const recentFeeds = await client.recentFeeds(10);
+    expect(recentFeeds).toHaveProperty("count", 10);
   });
 });
