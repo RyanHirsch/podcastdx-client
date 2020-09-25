@@ -13,7 +13,7 @@ fi
 cd $PROJECT_DIR
 PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
 
-if [ -z "$(git status --porcelain)" ]; then
+if [ -z "$(git diff --exit-code src/ && git diff --exit-code --cached src/ )" ]; then
   yarn typedoc -out docs src
   git add docs/
   git add package.json
@@ -21,4 +21,5 @@ if [ -z "$(git status --porcelain)" ]; then
   git push
 else
   echo "Please ensure everything is checked in before doing a publish"
+  exit 1
 fi
