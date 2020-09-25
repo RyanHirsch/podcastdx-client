@@ -32,7 +32,7 @@ function encodeObjectToQueryString(qs?: Record<string, string | number | number[
 export default class PodcastIndexClient {
   private apiUrl = `https://api.podcastindex.org/api/1.0`;
 
-  private userAgent = "podcastdx client/1.0";
+  private userAgent = "podcastdx client/2.0";
 
   private version = "1.0";
 
@@ -79,7 +79,7 @@ export default class PodcastIndexClient {
       if (res.status >= 200 && res.status < 300) {
         return res.json();
       }
-      return res.statusText;
+      throw new Error(res.statusText);
     });
   }
 
