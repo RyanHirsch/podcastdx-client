@@ -13,12 +13,9 @@ fi
 cd $PROJECT_DIR
 PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
 
-if [ -z "$(git diff --exit-code src/ && git diff --exit-code --cached src/ )" ]; then
-  git add package.json
-  git commit -m "version bump $PACKAGE_VERSION"
-  $SCRIPTS_DIR/update-docs.sh
-  git push
-else
-  echo "Please ensure everything is checked in before doing a publish"
-  exit 1
-fi
+yarn typedoc -out docs src
+touch docs/.nojekyll
+git add docs/
+git commit -m "documentation update for $PACKAGE_VERSION"
+git push
+

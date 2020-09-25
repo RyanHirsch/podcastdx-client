@@ -13,6 +13,8 @@ npm -i podcastdx-client
 
 ## Usage
 
+Auto generated docs are available at <https://ryanhirsch.github.io/podcastdx-client/>
+
 ```ts
 import PodcastIndexClient from "podcastdx-client";
 
