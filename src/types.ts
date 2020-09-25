@@ -1,16 +1,30 @@
+interface PodcastBase {
+  /** The internal podcastindex.org feed id. */
+  id: number;
+  /** The feed title. */
+  title: string;
+  /** The current feed url. */
+  url: string;
+  /** The itunes id of this feed if there is one, and we know what it is. */
+  itunesId: number;
+  /** The channel-level language specification of the feed. Languages accord with the RSS language spec. */
+  language: string;
+  /** This is a record of categoryId: categoryName */
+  categories: Record<string, string>;
+}
+
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace ApiResponse {
   export enum Status {
     Success = "true",
   }
 
+  export interface NewPodcastFeed extends PodcastBase {
+    /** [Unix Epoch] Timestamp */
+    newestItemPublishTime: number;
+  }
+
   export interface PodcastFeed {
-    /** The internal podcastindex.org feed id. */
-    id: number;
-    /** The feed title. */
-    title: string;
-    /** The current feed url. */
-    url: string;
     /** The url of the feed, before it changed to it’s current url. */
     originalUrl: string;
     /** The channel level link in the feed. */
@@ -37,12 +51,8 @@ export namespace ApiResponse {
     lastHttpStatus: number;
     /** The Content-Type header from the last time we pulled this feed from it’s url. */
     contentType: string;
-    /** The itunes id of this feed if there is one, and we know what it is. */
-    itunesId: number;
     /** The channel-level generator element if there is one. */
     generator: string;
-    /** The channel-level language specification of the feed. Languages accord with the RSS language spec. */
-    language: string;
     /** 0 = RSS, 1 = ATOM */
     type: PodcastFeedType;
     /** At some point, we give up trying to process a feed and mark it as dead. This is usually after 1000 errors without a successful pull/parse cycle. Once the feed is marked dead, we only check it once per month. */
@@ -51,8 +61,6 @@ export namespace ApiResponse {
     crawlErrors: number;
     /** The number of errors we’ve encountered trying to parse the feed content. Errors here are things like not well-formed xml, bad character encoding, etc. We fix many of these types of issues on the fly when parsing. We only increment the errors count when we can’t fix it. */
     parseErrors: number;
-    /** This is a record of categoryId: categoryName */
-    categories: Record<string, string>;
   }
 
   export interface SimplePodcastFeed {
@@ -95,7 +103,16 @@ export namespace ApiResponse {
     description: string;
   }
 
-  export interface LatestFeeds {
+  export interface RecentFeeds {
+    currentTime: number;
+    status: ApiResponse.Status;
+    feeds: Array<ApiResponse.NewPodcastFeed>;
+    count: number;
+    max: number;
+    description: string;
+  }
+
+  export interface RecentNewFeeds {
     status: ApiResponse.Status;
     feeds: Array<ApiResponse.SimplePodcastFeed>;
     count: number;
@@ -103,7 +120,7 @@ export namespace ApiResponse {
     description: string;
   }
 
-  export interface LatestEpisodes {
+  export interface RecentEpisodes {
     status: ApiResponse.Status;
     feeds: Array<ApiResponse.PodcastEpisode>;
     count: number;

@@ -24,8 +24,9 @@ const client = new PodcastIndexClient({
 
 client.search("javascript").then(console.log);
 
-client.latestFeeds().then(console.log);
-client.latestEpisodes().then(console.log);
+client.recentFeeds().then(console.log);
+client.recentNewFeeds().then(console.log);
+client.recentEpisodes().then(console.log);
 
 client.podcastByUrl("https://feeds.theincomparable.com/batmanuniversity").then(console.log);
 client.podcastById(75075).then(console.log);
