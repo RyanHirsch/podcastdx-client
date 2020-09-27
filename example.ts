@@ -6,6 +6,7 @@ const client = new PodcastIndexClient({
 });
 
 (async function () {
-  const result = await client.recentFeeds(10, { language: "en", isCategory: [2, 10] });
-  result.feeds.forEach((f) => console.log(f.categories));
+  // const result = await client.recentFeeds(10, { language: "en", isCategory: [2, 10] });
+  // result.feeds.forEach((f) => console.log(f.categories));
+  console.log(await client.categories());
 })();

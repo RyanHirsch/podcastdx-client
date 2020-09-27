@@ -20,7 +20,8 @@
     "lint": "eslint --ext .js,.ts src/",
     "test:watch": "jest --watch",
     "dev": "DEBUG=* ts-node -r tsconfig-paths/register example.ts",
-    "dev:watch": "ts-node-dev --respawn --no-notify example.ts"
+    "dev:watch": "ts-node-dev --respawn --no-notify example.ts",
+    "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "devDependencies": {
     "@types/debug": "^4.1.5",
@@ -30,6 +31,7 @@
     "@types/ramda": "^0.27.17",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@typescript-eslint/parser": "^4.1.0",
+    "auto-changelog": "^2.2.1",
     "eslint": "^7.9.0",
     "eslint-config-airbnb-typescript": "^10.0.0",
     "eslint-config-prettier": "^6.11.0",

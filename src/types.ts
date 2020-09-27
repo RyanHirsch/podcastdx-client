@@ -63,6 +63,11 @@ export namespace ApiResponse {
     parseErrors: number;
   }
 
+  export interface Category {
+    id: number;
+    name: string;
+  }
+
   export interface SimplePodcastFeed {
     id: number;
     url: string;
@@ -104,7 +109,7 @@ export namespace ApiResponse {
   }
 
   export interface RecentFeeds {
-    currentTime: number;
+    since: number;
     status: ApiResponse.Status;
     feeds: Array<ApiResponse.NewPodcastFeed>;
     count: number;
@@ -136,6 +141,13 @@ export namespace ApiResponse {
       url?: string;
       id?: string;
     };
+  }
+
+  export interface Categories {
+    status: ApiResponse.Status;
+    feeds: Array<ApiResponse.Category>;
+    count: number;
+    description: string;
   }
 
   export interface Episodes {

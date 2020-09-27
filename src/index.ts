@@ -85,6 +85,17 @@ export default class PodcastIndexClient {
 
   // #region Search
   /**
+   * List all categories
+   *
+   * @param query search query
+   */
+  public categories(): Promise<ApiResponse.Categories> {
+    return this.fetch("/categories/list");
+  }
+  // #endregion
+
+  // #region Search
+  /**
    * This call returns all of the feeds that match the search terms in the title of the feed.
    * This is ordered by the last-released episode, with the latest at the top of the results.
    *
@@ -142,6 +153,7 @@ export default class PodcastIndexClient {
 
   /**
    * This call returns every new feed added to the index over the past 24 hours in reverse chronological order. Max of 1000
+   * NOTE: As of Sept 27, the API does not respect max
    *
    * @param max the max number of items to return, defaults to 10
    */
