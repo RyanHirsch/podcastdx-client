@@ -127,7 +127,7 @@ export namespace ApiResponse {
 
   export interface RecentEpisodes {
     status: ApiResponse.Status;
-    feeds: Array<ApiResponse.PodcastEpisode>;
+    items: Array<ApiResponse.PodcastEpisode>;
     count: number;
     max: number;
     description: string;
