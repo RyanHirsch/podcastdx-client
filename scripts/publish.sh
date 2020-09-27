@@ -15,7 +15,7 @@ PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{
 
 if [ -z "$(git diff --exit-code src/ && git diff --exit-code --cached src/ )" ]; then
   git add package.json
-  yarn version
+  yarn auto-changelog -p && git add CHANGELOG.md
   git commit -m "version bump $PACKAGE_VERSION"
   $SCRIPTS_DIR/update-docs.sh
   git push
