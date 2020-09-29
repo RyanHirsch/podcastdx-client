@@ -8,7 +8,7 @@ import { ApiResponse } from "./types";
 
 dotEnv.config();
 
-function encodeObjectToQueryString(qs?: Record<string, string | number | number[] | undefined>) {
+function encodeObjectToQueryString(qs?: ApiResponse.AnyQueryOptions) {
   if (!qs) {
     return null;
   }
