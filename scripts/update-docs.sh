@@ -13,7 +13,7 @@ fi
 cd $PROJECT_DIR
 PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
 
-yarn typedoc -out docs src
+yarn typedoc
 touch docs/.nojekyll
 git add docs/
 git commit -m "documentation update for $PACKAGE_VERSION"
