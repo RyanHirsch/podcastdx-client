@@ -101,6 +101,8 @@ export namespace ApiResponse {
     feedId: number;
     feedTitle: string;
     feedLanguage: string;
+    /** This is a record of categoryId: categoryName */
+    categories: Record<string, string>;
   }
 
   export interface Search {
@@ -158,6 +160,14 @@ export namespace ApiResponse {
     items: Array<ApiResponse.PodcastEpisode>;
     count: number;
     query: string;
+    description: string;
+  }
+
+  export interface RandomEpisodes {
+    status: ApiResponse.Status;
+    max: number;
+    episodes: Array<ApiResponse.PodcastEpisode>;
+    count: number;
     description: string;
   }
 

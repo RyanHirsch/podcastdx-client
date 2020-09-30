@@ -189,8 +189,16 @@ export default class PodcastIndexClient {
 
   // #region Episodes
   /** This call returns all the episodes we know about for this feed, in reverse chronological order. */
-  public episodesByFeedUrl(url: string): Promise<ApiResponse.Episodes> {
-    return this.fetch("/episodes/byfeedurl", { url });
+  public episodesByFeedUrl(
+    url: string,
+    options: {
+      /** You can specify a maximum number of results to return */
+      max?: number;
+      /** You can specify a hard-coded unix timestamp, or a negative integer that represents a number of seconds prior to right now. Either way you specify, the search will start from that time and only return feeds updated since then. */
+      since?: number;
+    } = {}
+  ): Promise<ApiResponse.Episodes> {
+    return this.fetch("/episodes/byfeedurl", { ...options, url });
   }
 
   /**
@@ -200,8 +208,10 @@ export default class PodcastIndexClient {
   public episodesByFeedId(
     id: number,
     options: {
-      /** If you pass this argument, any item containing this string will be discarded from the result set. This may, in certain cases, reduce your set size below your “max” value. */
+      /** You can specify a maximum number of results to return */
       max?: number;
+      /** You can specify a hard-coded unix timestamp, or a negative integer that represents a number of seconds prior to right now. Either way you specify, the search will start from that time and only return feeds updated since then. */
+      since?: number;
     } = {}
   ): Promise<ApiResponse.Episodes> {
     return this.fetch("/episodes/byfeedid", { ...options, id });
@@ -211,8 +221,50 @@ export default class PodcastIndexClient {
    * If we have an itunes id on file for a feed, then this call returns all the episodes we know about for the feed, in reverse chronological order.
    * Note: The itunes id parameter can either be the number alone, or be prepended with “id”.
    */
-  public episodesByItunesId(id: number): Promise<ApiResponse.Episodes> {
-    return this.fetch("/episodes/byitunesid", { id });
+  public episodesByItunesId(
+    id: number,
+    options: {
+      /** You can specify a maximum number of results to return */
+      max?: number;
+      /** You can specify a hard-coded unix timestamp, or a negative integer that represents a number of seconds prior to right now. Either way you specify, the search will start from that time and only return feeds updated since then. */
+      since?: number;
+    } = {}
+  ): Promise<ApiResponse.Episodes> {
+    return this.fetch("/episodes/byitunesid", { ...options, id });
+  }
+
+  /**
+   * This call returns a random batch of [max] episodes, in no specific order.
+   *
+   * Note: If no [max] is specified, the default is 1. You can return up to 40 episodes at a time.
+   * Note: Language and category names are case-insensitive.
+   * Note: You can mix and match the cat and notcat filters to fine tune a very specific result set.
+   */
+  public episodesRandom(
+    options: {
+      /** You can specify a maximum number of results to return */
+      max?: number;
+      /** Specifying a language code (like "en") will return only episodes having that specific language. You can specify multiple languages by separating them with commas. If you also want to return episodes that have no language given, use the token "unknown". (ex. en,es,ja,unknown) */
+      lang?: string | string[];
+      /** You may use this argument to specify that you ONLY want episodes with these categories in the results. Separate multiple categories with commas. You may specify either the category id or the category name */
+      cat?: string | string[];
+      /** You may use this argument to specify categories of episodes to NOT show in the results. Separate multiple categories with commas. You may specify either the category id or the category name. */
+      notcat?: string | string[];
+    } = {}
+  ): Promise<ApiResponse.RandomEpisodes> {
+    const parsedOptions: Record<string, number | string> = options.max ? { max: options.max } : {};
+
+    if (Array.isArray(options.lang)) {
+      parsedOptions.lang = options.lang.join(",");
+    }
+    if (Array.isArray(options.cat)) {
+      parsedOptions.cat = options.cat.join(",");
+    }
+    if (Array.isArray(options.notcat)) {
+      parsedOptions.notcat = options.notcat.join(",");
+    }
+
+    return this.fetch("/episodes/random", parsedOptions);
   }
 
   /** Get all the metadata for a single episode by passing its id. */
