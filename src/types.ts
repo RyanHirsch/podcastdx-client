@@ -9,8 +9,6 @@ interface PodcastBase {
   itunesId: number;
   /** The channel-level language specification of the feed. Languages accord with the RSS language spec. */
   language: string;
-  /** This is a record of categoryId: categoryName */
-  categories: Record<string, string>;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -63,6 +61,8 @@ export namespace ApiResponse {
     crawlErrors: number;
     /** The number of errors we’ve encountered trying to parse the feed content. Errors here are things like not well-formed xml, bad character encoding, etc. We fix many of these types of issues on the fly when parsing. We only increment the errors count when we can’t fix it. */
     parseErrors: number;
+    /** category id: name, NOTE: this is not always present on the raw responses and will be populated with an empty object when missing form the api response */
+    categories: Record<string, string>;
   }
 
   export interface Category {
@@ -75,6 +75,7 @@ export namespace ApiResponse {
     url: string;
     timeAdded: number;
     status: ApiResponse.Status;
+    contentHash: string;
   }
 
   export interface PodcastEpisode {
@@ -101,8 +102,57 @@ export namespace ApiResponse {
     feedId: number;
     feedTitle: string;
     feedLanguage: string;
-    /** This is a record of categoryId: categoryName */
+  }
+
+  export interface RandomPodcastEpisode {
+    id: number;
+    title: string;
+    link: string;
+    description: string;
+    guid: string;
+    datePublished: number;
+    datePublishedPretty: string;
+    dateCrawled: number;
+    enclosureUrl: string;
+    enclosureType: string;
+    enclosureLength: number;
+    explicit: number;
+    episode: number;
+    episodeType: string;
+    season: number;
+    /** URL to episode image */
+    image: string;
+    feedItunesId: number;
+    /** URL to feed image */
+    feedImage: string;
+    feedId: number;
+    feedTitle: string;
+    feedLanguage: string;
     categories: Record<string, string>;
+  }
+
+  export interface EpisodeInfo {
+    id: number;
+    title: string;
+    link: string;
+    description: string;
+    guid: string;
+    datePublished: number;
+    dateCrawled: number;
+    enclosureUrl: string;
+    enclosureType: string;
+    enclosureLength: number;
+    explicit: number;
+    episode: number;
+    episodeType: string;
+    season: number;
+    /** URL to episode image */
+    image: string;
+    feedItunesId: number;
+    /** URL to feed image */
+    feedImage: string;
+    feedId: number;
+    feedLanguage: string;
   }
 
   export interface Search {
@@ -148,6 +198,10 @@ export namespace ApiResponse {
     };
   }
 
+  export type PodcastById = ApiResponse.Podcast;
+  export type PodcastByItunesId = ApiResponse.Podcast;
+  export type PodcastByUrl = ApiResponse.Podcast;
+
   export interface Categories {
     status: ApiResponse.Status;
     feeds: Array<ApiResponse.Category>;
@@ -157,21 +211,25 @@ export namespace ApiResponse {
 
   export interface Episodes {
     status: ApiResponse.Status;
-    items: Array<ApiResponse.PodcastEpisode>;
+    items: Array<ApiResponse.EpisodeInfo>;
     count: number;
     query: string;
     description: string;
   }
 
+  export type EpisodesByItunesId = ApiResponse.Episodes;
+  export type EpisodesByFeedId = ApiResponse.Episodes;
+  export type EpisodesByFeedUrl = ApiResponse.Episodes;
+
   export interface RandomEpisodes {
     status: ApiResponse.Status;
     max: number;
-    episodes: Array<ApiResponse.PodcastEpisode>;
+    episodes: Array<ApiResponse.RandomPodcastEpisode>;
     count: number;
     description: string;
   }
 
-  export interface Episode {
+  export interface EpisodeById {
     status: ApiResponse.Status;
     id: string;
     episode: ApiResponse.PodcastEpisode;

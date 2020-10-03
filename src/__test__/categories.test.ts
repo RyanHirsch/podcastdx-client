@@ -1,4 +1,8 @@
+import { keys } from "ts-transformer-keys";
+
 import PodcastIndexClient from "../index";
+import { ApiResponse } from "../types";
+import { assertObjectsHaveProperties, assertObjectHasProperties } from "./utils";
 
 describe("categories api", () => {
   let client: PodcastIndexClient;
@@ -10,10 +14,8 @@ describe("categories api", () => {
   });
 
   it("response has known keys", async () => {
-    const properties = ["status", "feeds", "count", "description"];
     const categoriesList = await client.categories();
-
-    expect(Object.keys(categoriesList)).toHaveLength(properties.length);
-    properties.forEach((prop) => expect(categoriesList).toHaveProperty(prop));
+    assertObjectHasProperties(keys<ApiResponse.Categories>(), categoriesList);
+    assertObjectsHaveProperties(keys<ApiResponse.Category>(), categoriesList.feeds);
   });
 });

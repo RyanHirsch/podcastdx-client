@@ -1,4 +1,8 @@
+import { keys } from "ts-transformer-keys";
+
+import { assertObjectsHaveProperties, assertObjectHasProperties } from "./utils";
 import PodcastIndexClient from "../index";
+import { ApiResponse } from "../types";
 
 const knownKeys = "response has known keys";
 
@@ -13,21 +17,31 @@ describe("recent api", () => {
 
   describe("episodes", () => {
     it(knownKeys, async () => {
-      const properties = ["status", "items", "count", "max", "description"];
       const recentEpisodes = await client.recentEpisodes();
 
-      expect(Object.keys(recentEpisodes)).toHaveLength(properties.length);
-      properties.forEach((prop) => expect(recentEpisodes).toHaveProperty(prop));
+      assertObjectHasProperties<ApiResponse.RecentEpisodes>(
+        keys<ApiResponse.RecentEpisodes>(),
+        recentEpisodes
+      );
+      assertObjectsHaveProperties<ApiResponse.PodcastEpisode>(
+        keys<ApiResponse.PodcastEpisode>(),
+        recentEpisodes.items
+      );
     });
   });
 
   describe("feeds", () => {
     it(knownKeys, async () => {
-      const properties = ["since", "status", "feeds", "count", "max", "description"];
       const recentFeeds = await client.recentFeeds();
 
-      expect(Object.keys(recentFeeds)).toHaveLength(properties.length);
-      properties.forEach((prop) => expect(recentFeeds).toHaveProperty(prop));
+      assertObjectHasProperties<ApiResponse.RecentFeeds>(
+        keys<ApiResponse.RecentFeeds>(),
+        recentFeeds
+      );
+      assertObjectsHaveProperties<ApiResponse.NewPodcastFeed>(
+        keys<ApiResponse.NewPodcastFeed>(),
+        recentFeeds.feeds
+      );
     });
   });
 
@@ -38,11 +52,16 @@ describe("recent api", () => {
 
   describe("new feeds", () => {
     it(knownKeys, async () => {
-      const properties = ["status", "feeds", "count", "max", "description"];
       const recentNewFeeds = await client.recentNewFeeds();
 
-      expect(Object.keys(recentNewFeeds)).toHaveLength(properties.length);
-      properties.forEach((prop) => expect(recentNewFeeds).toHaveProperty(prop));
+      assertObjectHasProperties<ApiResponse.RecentNewFeeds>(
+        keys<ApiResponse.RecentNewFeeds>(),
+        recentNewFeeds
+      );
+      assertObjectsHaveProperties<ApiResponse.SimplePodcastFeed>(
+        keys<ApiResponse.SimplePodcastFeed>(),
+        recentNewFeeds.feeds
+      );
     });
   });
 });

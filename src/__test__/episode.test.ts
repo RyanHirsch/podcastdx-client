@@ -1,6 +1,9 @@
 import { chain, uniq } from "ramda";
+import { keys } from "ts-transformer-keys";
+
 import PodcastIndexClient from "../index";
 import { ApiResponse } from "../types";
+import { assertObjectsHaveProperties, assertObjectHasProperties } from "./utils";
 
 const knownKeys = "response has known keys";
 const sinceNowParam = "accepts a since param (now)";
@@ -20,11 +23,10 @@ describe("episodes api", () => {
   describe("byFeedUrl", () => {
     const feedUrl = "https://feeds.twit.tv/twit.xml";
     it(knownKeys, async () => {
-      const properties = ["status", "items", "count", "description", "query"];
       const episodes = await client.episodesByFeedUrl(feedUrl);
 
-      expect(Object.keys(episodes)).toHaveLength(properties.length);
-      properties.forEach((prop) => expect(episodes).toHaveProperty(prop));
+      assertObjectHasProperties(keys<ApiResponse.EpisodesByFeedUrl>(), episodes);
+      assertObjectsHaveProperties(keys<ApiResponse.EpisodeInfo>(), episodes.items);
     });
 
     it(sinceNowParam, async () => {
@@ -66,11 +68,10 @@ describe("episodes api", () => {
   describe("byFeedId", () => {
     const feedId = 555343;
     it(knownKeys, async () => {
-      const properties = ["status", "items", "count", "description", "query"];
       const episodes = await client.episodesByFeedId(feedId);
 
-      expect(Object.keys(episodes)).toHaveLength(properties.length);
-      properties.forEach((prop) => expect(episodes).toHaveProperty(prop));
+      assertObjectHasProperties(keys<ApiResponse.EpisodesByFeedId>(), episodes);
+      assertObjectsHaveProperties(keys<ApiResponse.EpisodeInfo>(), episodes.items);
     });
 
     it(sinceNowParam, async () => {
@@ -112,10 +113,9 @@ describe("episodes api", () => {
   describe("byItunesId", () => {
     const itunesId = 73329404;
     it(knownKeys, async () => {
-      const properties = ["status", "items", "count", "description", "query"];
       const episodes = await client.episodesByItunesId(itunesId);
-      expect(Object.keys(episodes)).toHaveLength(properties.length);
-      properties.forEach((prop) => expect(episodes).toHaveProperty(prop));
+      assertObjectHasProperties(keys<ApiResponse.EpisodesByItunesId>(), episodes);
+      assertObjectsHaveProperties(keys<ApiResponse.EpisodeInfo>(), episodes.items);
     });
 
     it(sinceNowParam, async () => {
@@ -156,20 +156,22 @@ describe("episodes api", () => {
 
   describe("byId", () => {
     it(knownKeys, async () => {
-      const properties = ["status", "id", "episode", "description"];
       const episode = await client.episodeById(391128542);
 
-      expect(Object.keys(episode)).toHaveLength(properties.length);
-      properties.forEach((prop) => expect(episode).toHaveProperty(prop));
+      assertObjectHasProperties(keys<ApiResponse.EpisodeById>(), episode);
+      assertObjectHasProperties(keys<ApiResponse.PodcastEpisode>(), episode.episode);
     });
   });
 
   describe("random", () => {
     it(knownKeys, async () => {
-      const properties = ["status", "max", "episodes", "count", "description"];
-      const episodes = await client.episodesRandom();
-      expect(Object.keys(episodes)).toHaveLength(properties.length);
-      properties.forEach((prop) => expect(episodes).toHaveProperty(prop));
+      const randomEpisodes = await client.episodesRandom();
+
+      assertObjectHasProperties(keys<ApiResponse.RandomEpisodes>(), randomEpisodes);
+      assertObjectsHaveProperties(
+        keys<ApiResponse.RandomPodcastEpisode>(),
+        randomEpisodes.episodes
+      );
     });
 
     it(maxParamSingle, async () => {
@@ -187,17 +189,17 @@ describe("episodes api", () => {
     it.skip("accepts a not category param (name)", async () => {
       const testEpisodesResult = await client.episodesRandom({ max: 3 });
       const categoryValues = chain(
-        (ep: ApiResponse.PodcastEpisode) => Object.values(ep.categories),
+        (ep) => Object.values(ep.categories),
         testEpisodesResult.episodes
       );
 
       const [testCategory] = uniq(categoryValues);
       const episodes = await client.episodesRandom({
         notcat: testCategory,
-        max: 20,
+        max: 40,
       });
 
-      expect(episodes.count).toEqual(20);
+      expect(episodes.count).toEqual(40);
       episodes.episodes.forEach((ep) =>
         expect(Object.values(ep.categories)).not.toContain(testCategory)
       );
@@ -206,17 +208,17 @@ describe("episodes api", () => {
     it("accepts multiple not categories param (name)", async () => {
       const testEpisodesResult = await client.episodesRandom({ max: 3 });
       const categoryValues = chain(
-        (ep: ApiResponse.PodcastEpisode) => Object.values(ep.categories),
+        (ep) => Object.values(ep.categories),
         testEpisodesResult.episodes
       );
 
       const categories = uniq(categoryValues).slice(0, 2);
       const episodes = await client.episodesRandom({
         notcat: categories,
-        max: 20,
+        max: 40,
       });
 
-      expect(episodes.count).toEqual(20);
+      expect(episodes.count).toEqual(40);
       episodes.episodes.forEach((ep) =>
         expect(Object.values(ep.categories).some((cat) => categories.includes(cat))).toBe(false)
       );
@@ -225,17 +227,17 @@ describe("episodes api", () => {
     it.skip("accepts a category param (name)", async () => {
       const testEpisodesResult = await client.episodesRandom({ max: 3 });
       const categoryValues = chain(
-        (ep: ApiResponse.PodcastEpisode) => Object.values(ep.categories),
+        (ep) => Object.values(ep.categories),
         testEpisodesResult.episodes
       );
 
       const [testCategory] = uniq(categoryValues);
       const episodes = await client.episodesRandom({
         cat: testCategory,
-        max: 20,
+        max: 40,
       });
 
-      expect(episodes.count).toEqual(20);
+      expect(episodes.count).toEqual(40);
       episodes.episodes.forEach((ep) =>
         expect(Object.values(ep.categories)).toContain(testCategory)
       );
@@ -244,17 +246,17 @@ describe("episodes api", () => {
     it("accepts multiple categories param (name)", async () => {
       const testEpisodesResult = await client.episodesRandom({ max: 3 });
       const categoryValues = chain(
-        (ep: ApiResponse.PodcastEpisode) => Object.values(ep.categories),
+        (ep) => Object.values(ep.categories),
         testEpisodesResult.episodes
       );
 
       const categories = uniq(categoryValues).slice(0, 2);
       const episodes = await client.episodesRandom({
         cat: categories,
-        max: 20,
+        max: 40,
       });
 
-      expect(episodes.count).toEqual(20);
+      expect(episodes.count).toEqual(40);
       episodes.episodes.forEach((ep) =>
         expect(Object.values(ep.categories).some((cat) => categories.includes(cat))).toBe(true)
       );
@@ -262,35 +264,29 @@ describe("episodes api", () => {
 
     it.skip("accepts a category param (id)", async () => {
       const testEpisodesResult = await client.episodesRandom({ max: 3 });
-      const categoryKeys = chain(
-        (ep: ApiResponse.PodcastEpisode) => Object.keys(ep.categories),
-        testEpisodesResult.episodes
-      );
+      const categoryKeys = chain((ep) => Object.keys(ep.categories), testEpisodesResult.episodes);
 
       const [testCategory] = uniq(categoryKeys);
       const episodes = await client.episodesRandom({
         cat: testCategory,
-        max: 20,
+        max: 40,
       });
 
-      expect(episodes.count).toEqual(20);
+      expect(episodes.count).toEqual(40);
       episodes.episodes.forEach((ep) => expect(Object.keys(ep.categories)).toContain(testCategory));
     });
 
     it("accepts multiple categories param (id)", async () => {
       const testEpisodesResult = await client.episodesRandom({ max: 3 });
-      const categoryKeys = chain(
-        (ep: ApiResponse.PodcastEpisode) => Object.keys(ep.categories),
-        testEpisodesResult.episodes
-      );
+      const categoryKeys = chain((ep) => Object.keys(ep.categories), testEpisodesResult.episodes);
 
       const categories = uniq(categoryKeys).slice(0, 2);
       const episodes = await client.episodesRandom({
         cat: categories,
-        max: 20,
+        max: 40,
       });
 
-      expect(episodes.count).toEqual(20);
+      expect(episodes.count).toEqual(40);
       // expect(categories.every((cat) => Object.keys(ep.categories).includes(cat))).toBe(true)
       episodes.episodes.forEach((ep) =>
         expect(Object.keys(ep.categories).some((cat) => categories.includes(cat))).toBe(true)
@@ -299,18 +295,15 @@ describe("episodes api", () => {
 
     it.skip("accepts a not category param (id)", async () => {
       const testEpisodesResult = await client.episodesRandom({ max: 3 });
-      const categoryKeys = chain(
-        (ep: ApiResponse.PodcastEpisode) => Object.keys(ep.categories),
-        testEpisodesResult.episodes
-      );
+      const categoryKeys = chain((ep) => Object.keys(ep.categories), testEpisodesResult.episodes);
 
       const [testCategory] = uniq(categoryKeys);
       const episodes = await client.episodesRandom({
         notcat: testCategory,
-        max: 20,
+        max: 40,
       });
 
-      expect(episodes.count).toEqual(20);
+      expect(episodes.count).toEqual(40);
       episodes.episodes.forEach((ep) =>
         expect(Object.keys(ep.categories)).not.toContain(testCategory)
       );
@@ -318,18 +311,15 @@ describe("episodes api", () => {
 
     it("accepts multiple not categories param (id)", async () => {
       const testEpisodesResult = await client.episodesRandom({ max: 3 });
-      const categoryKeys = chain(
-        (ep: ApiResponse.PodcastEpisode) => Object.keys(ep.categories),
-        testEpisodesResult.episodes
-      );
+      const categoryKeys = chain((ep) => Object.keys(ep.categories), testEpisodesResult.episodes);
 
       const categories = uniq(categoryKeys).slice(0, 2);
       const episodes = await client.episodesRandom({
         notcat: categories,
-        max: 20,
+        max: 40,
       });
 
-      expect(episodes.count).toEqual(20);
+      expect(episodes.count).toEqual(40);
       episodes.episodes.forEach((ep) =>
         expect(Object.keys(ep.categories).some((cat) => categories.includes(cat))).toBe(false)
       );
@@ -338,10 +328,10 @@ describe("episodes api", () => {
     it.skip("accepts a language param", async () => {
       const episodes = await client.episodesRandom({
         lang: "en",
-        max: 20,
+        max: 40,
       });
 
-      expect(episodes.count).toEqual(20);
+      expect(episodes.count).toEqual(40);
       episodes.episodes.forEach((ep) => expect(ep.feedLanguage).toEqual("en"));
     });
 
@@ -349,10 +339,10 @@ describe("episodes api", () => {
       const languages = ["en", "es"];
       const episodes = await client.episodesRandom({
         lang: languages,
-        max: 20,
+        max: 40,
       });
 
-      expect(episodes.count).toEqual(20);
+      expect(episodes.count).toEqual(40);
       episodes.episodes.forEach((ep) => expect(languages.includes(ep.feedLanguage)).toBe(true));
     });
   });

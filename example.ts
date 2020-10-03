@@ -6,7 +6,11 @@ const client = new PodcastIndexClient({
 });
 
 (async function () {
-  // const result = await client.recentFeeds(10, { language: "en", isCategory: [2, 10] });
+  const result = await client.recentFeeds(2);
+  result.feeds.forEach(async (feed) => console.log(await client.podcastById(feed.id)));
   // result.feeds.forEach((f) => console.log(f.categories));
-  console.log(await client.categories());
+  // console.log(await client.categories());
 })();
+
+// 39633 categories
+// 386307 categories

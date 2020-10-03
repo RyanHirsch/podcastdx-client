@@ -66,7 +66,7 @@ export default class PodcastIndexClient {
     };
   }
 
-  private fetch(endpoint: string, qs?: Record<string, string | number | undefined>) {
+  private fetch<T>(endpoint: string, qs?: Record<string, string | number | undefined>): Promise<T> {
     const queryString = qs ? encodeObjectToQueryString(qs) : null;
     const options = {
       method: `GET`,
@@ -172,18 +172,30 @@ export default class PodcastIndexClient {
 
   // #region Podcasts
   /** This call returns everything we know about the feed. */
-  public podcastByUrl(url: string): Promise<ApiResponse.Podcast> {
-    return this.fetch("/podcasts/byfeedurl", { url });
+  public async podcastByUrl(url: string): Promise<ApiResponse.PodcastByUrl> {
+    const result = await this.fetch<ApiResponse.PodcastByUrl>("/podcasts/byfeedurl", { url });
+    if (!result.feed.categories) {
+      result.feed.categories = {};
+    }
+    return result;
   }
 
   /** This call returns everything we know about the feed. */
-  public podcastById(id: number): Promise<ApiResponse.Podcast> {
-    return this.fetch("/podcasts/byfeedid", { id });
+  public async podcastById(id: number): Promise<ApiResponse.PodcastById> {
+    const result = await this.fetch<ApiResponse.PodcastById>("/podcasts/byfeedid", { id });
+    if (!result.feed.categories) {
+      result.feed.categories = {};
+    }
+    return result;
   }
 
   /** If we have an itunes id on file for a feed, then this call returns everything we know about that feed. */
-  public podcastByItunesId(id: number): Promise<ApiResponse.Podcast> {
-    return this.fetch("/podcasts/byitunesid", { id });
+  public async podcastByItunesId(id: number): Promise<ApiResponse.PodcastByItunesId> {
+    const result = await this.fetch<ApiResponse.PodcastByItunesId>("/podcasts/byitunesid", { id });
+    if (!result.feed.categories) {
+      result.feed.categories = {};
+    }
+    return result;
   }
   // #endregion
 
@@ -197,7 +209,7 @@ export default class PodcastIndexClient {
       /** You can specify a hard-coded unix timestamp, or a negative integer that represents a number of seconds prior to right now. Either way you specify, the search will start from that time and only return feeds updated since then. */
       since?: number;
     } = {}
-  ): Promise<ApiResponse.Episodes> {
+  ): Promise<ApiResponse.EpisodesByFeedUrl> {
     return this.fetch("/episodes/byfeedurl", { ...options, url });
   }
 
@@ -213,7 +225,7 @@ export default class PodcastIndexClient {
       /** You can specify a hard-coded unix timestamp, or a negative integer that represents a number of seconds prior to right now. Either way you specify, the search will start from that time and only return feeds updated since then. */
       since?: number;
     } = {}
-  ): Promise<ApiResponse.Episodes> {
+  ): Promise<ApiResponse.EpisodesByFeedId> {
     return this.fetch("/episodes/byfeedid", { ...options, id });
   }
 
@@ -229,7 +241,7 @@ export default class PodcastIndexClient {
       /** You can specify a hard-coded unix timestamp, or a negative integer that represents a number of seconds prior to right now. Either way you specify, the search will start from that time and only return feeds updated since then. */
       since?: number;
     } = {}
-  ): Promise<ApiResponse.Episodes> {
+  ): Promise<ApiResponse.EpisodesByItunesId> {
     return this.fetch("/episodes/byitunesid", { ...options, id });
   }
 
@@ -268,7 +280,7 @@ export default class PodcastIndexClient {
   }
 
   /** Get all the metadata for a single episode by passing its id. */
-  public episodeById(id: number): Promise<ApiResponse.Episode> {
+  public episodeById(id: number): Promise<ApiResponse.EpisodeById> {
     return this.fetch("/episodes/byid", { id });
   }
   // #endregion

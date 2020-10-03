@@ -1,43 +1,61 @@
+import { keys } from "ts-transformer-keys";
+
+import { assertObjectsHaveProperties, assertObjectHasProperties } from "./utils";
 import PodcastIndexClient from "../index";
+import { ApiResponse } from "../types";
 
 const knownKeys = "response has known keys";
 
 describe("podcasts api", () => {
   let client: PodcastIndexClient;
-  beforeAll(() => {
+  let randomFeed: ApiResponse.PodcastFeed;
+  beforeAll(async () => {
     client = new PodcastIndexClient({
       key: process.env.API_KEY ?? "",
       secret: process.env.API_SECRET ?? "",
     });
+    const [randomEpisode] = await (await client.episodesRandom({ max: 1, lang: "en" })).episodes;
+    randomFeed = await (await client.podcastById(randomEpisode.feedId)).feed;
   });
 
   describe("byUrl", () => {
     it(knownKeys, async () => {
-      const properties = ["status", "feed", "description", "query"];
-      const podcast = await client.podcastByUrl("https://feeds.twit.tv/twit.xml");
+      const podcast = await client.podcastByUrl(randomFeed.url);
 
-      expect(Object.keys(podcast)).toHaveLength(properties.length);
-      properties.forEach((prop) => expect(podcast).toHaveProperty(prop));
+      assertObjectHasProperties<ApiResponse.PodcastByUrl>(
+        keys<ApiResponse.PodcastByUrl>(),
+        podcast
+      );
+      assertObjectHasProperties<ApiResponse.PodcastFeed>(
+        keys<ApiResponse.PodcastFeed>(),
+        podcast.feed
+      );
     });
   });
 
   describe("byId", () => {
     it(knownKeys, async () => {
-      const properties = ["status", "feed", "description", "query"];
-      const podcast = await client.podcastById(555343);
-
-      expect(Object.keys(podcast)).toHaveLength(properties.length);
-      properties.forEach((prop) => expect(podcast).toHaveProperty(prop));
+      const podcast = await client.podcastById(randomFeed.id);
+      assertObjectHasProperties<ApiResponse.PodcastById>(keys<ApiResponse.PodcastById>(), podcast);
+      assertObjectHasProperties<ApiResponse.PodcastFeed>(
+        keys<ApiResponse.PodcastFeed>(),
+        podcast.feed
+      );
     });
   });
 
   describe("byItunesId", () => {
     it(knownKeys, async () => {
-      const properties = ["status", "feed", "description", "query"];
-      const podcast = await client.podcastByItunesId(73329404);
+      const podcast = await client.podcastByItunesId(randomFeed.itunesId);
 
-      expect(Object.keys(podcast)).toHaveLength(properties.length);
-      properties.forEach((prop) => expect(podcast).toHaveProperty(prop));
+      assertObjectHasProperties<ApiResponse.PodcastByItunesId>(
+        keys<ApiResponse.PodcastByItunesId>(),
+        podcast
+      );
+      assertObjectHasProperties<ApiResponse.PodcastFeed>(
+        keys<ApiResponse.PodcastFeed>(),
+        podcast.feed
+      );
     });
   });
 });

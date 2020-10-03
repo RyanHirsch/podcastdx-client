@@ -1,4 +1,8 @@
+import { keys } from "ts-transformer-keys";
+
+import { assertObjectsHaveProperties, assertObjectHasProperties } from "./utils";
 import PodcastIndexClient from "../index";
+import { ApiResponse } from "../types";
 
 describe("search api", () => {
   let client: PodcastIndexClient;
@@ -10,10 +14,12 @@ describe("search api", () => {
   });
 
   it("response has known keys", async () => {
-    const properties = ["query", "status", "feeds", "count", "description"];
     const searchResult = await client.search("javascript");
 
-    expect(Object.keys(searchResult)).toHaveLength(properties.length);
-    properties.forEach((prop) => expect(searchResult).toHaveProperty(prop));
+    assertObjectHasProperties<ApiResponse.Search>(keys<ApiResponse.Search>(), searchResult);
+    assertObjectsHaveProperties<ApiResponse.PodcastFeed>(
+      keys<ApiResponse.PodcastFeed>(),
+      searchResult.feeds
+    );
   });
 });
