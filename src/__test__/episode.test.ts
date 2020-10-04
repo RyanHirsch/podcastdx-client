@@ -119,11 +119,20 @@ describe("episodes api", () => {
     });
 
     it(sinceNowParam, async () => {
-      const episodes = await client.episodesByItunesId(itunesId, {
-        since: Date.now() / 1000,
+      const now = new Date();
+      const episodesEpoch = await client.episodesByItunesId(itunesId, {
+        since: now.getTime() / 1000,
+      });
+      const episodesNow = await client.episodesByItunesId(itunesId, {
+        since: now.getTime(),
+      });
+      const episodesDate = await client.episodesByItunesId(itunesId, {
+        since: now,
       });
 
-      expect(episodes.count).toEqual(0);
+      expect(episodesEpoch.count).toEqual(0);
+      expect(episodesEpoch.query).toEqual(episodesNow.query);
+      expect(episodesNow.query).toEqual(episodesDate.query);
     });
 
     it(sinceIncludeLastEpisode, async () => {
@@ -186,7 +195,7 @@ describe("episodes api", () => {
       expect(episodes.count).toEqual(2);
     });
 
-    it.skip("accepts a not category param (name)", async () => {
+    it("accepts a not category param (name)", async () => {
       const testEpisodesResult = await client.episodesRandom({ max: 3 });
       const categoryValues = chain(
         (ep) => Object.values(ep.categories),
@@ -224,7 +233,7 @@ describe("episodes api", () => {
       );
     });
 
-    it.skip("accepts a category param (name)", async () => {
+    it("accepts a category param (name)", async () => {
       const testEpisodesResult = await client.episodesRandom({ max: 3 });
       const categoryValues = chain(
         (ep) => Object.values(ep.categories),
@@ -262,7 +271,7 @@ describe("episodes api", () => {
       );
     });
 
-    it.skip("accepts a category param (id)", async () => {
+    it("accepts a category param (id)", async () => {
       const testEpisodesResult = await client.episodesRandom({ max: 3 });
       const categoryKeys = chain((ep) => Object.keys(ep.categories), testEpisodesResult.episodes);
 
@@ -293,7 +302,7 @@ describe("episodes api", () => {
       );
     });
 
-    it.skip("accepts a not category param (id)", async () => {
+    it("accepts a not category param (id)", async () => {
       const testEpisodesResult = await client.episodesRandom({ max: 3 });
       const categoryKeys = chain((ep) => Object.keys(ep.categories), testEpisodesResult.episodes);
 
@@ -325,7 +334,7 @@ describe("episodes api", () => {
       );
     });
 
-    it.skip("accepts a language param", async () => {
+    it("accepts a language param", async () => {
       const episodes = await client.episodesRandom({
         lang: "en",
         max: 40,

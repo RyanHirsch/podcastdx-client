@@ -5,6 +5,7 @@ import { pick } from "ramda";
 
 import logger from "./logger";
 import { ApiResponse } from "./types";
+import { toEpochTimestamp } from "./utils";
 
 dotEnv.config();
 
@@ -20,7 +21,7 @@ function encodeObjectToQueryString(qs?: ApiResponse.AnyQueryOptions) {
       }
 
       if (Array.isArray(val)) {
-        return `${key}[]=${val.map((v) => encodeURI(`${v}`)).join(",")}`;
+        return `${key}[]=${(val as unknown[]).map((v) => encodeURI(`${v}`)).join(",")}`;
       }
 
       return `${key}=${encodeURI(`${val}`)}`;
@@ -66,7 +67,7 @@ export default class PodcastIndexClient {
     };
   }
 
-  private fetch<T>(endpoint: string, qs?: Record<string, string | number | undefined>): Promise<T> {
+  private fetch<T>(endpoint: string, qs?: ApiResponse.AnyQueryOptions): Promise<T> {
     const queryString = qs ? encodeObjectToQueryString(qs) : null;
     const options = {
       method: `GET`,
@@ -210,7 +211,8 @@ export default class PodcastIndexClient {
       since?: number;
     } = {}
   ): Promise<ApiResponse.EpisodesByFeedUrl> {
-    return this.fetch("/episodes/byfeedurl", { ...options, url });
+    const { since, ...rest } = options;
+    return this.fetch("/episodes/byfeedurl", { ...rest, since: toEpochTimestamp(since), url });
   }
 
   /**
@@ -226,7 +228,8 @@ export default class PodcastIndexClient {
       since?: number;
     } = {}
   ): Promise<ApiResponse.EpisodesByFeedId> {
-    return this.fetch("/episodes/byfeedid", { ...options, id });
+    const { since, ...rest } = options;
+    return this.fetch("/episodes/byfeedid", { ...rest, since: toEpochTimestamp(since), id });
   }
 
   /**
@@ -239,10 +242,11 @@ export default class PodcastIndexClient {
       /** You can specify a maximum number of results to return */
       max?: number;
       /** You can specify a hard-coded unix timestamp, or a negative integer that represents a number of seconds prior to right now. Either way you specify, the search will start from that time and only return feeds updated since then. */
-      since?: number;
+      since?: number | Date;
     } = {}
   ): Promise<ApiResponse.EpisodesByItunesId> {
-    return this.fetch("/episodes/byitunesid", { ...options, id });
+    const { since, ...rest } = options;
+    return this.fetch("/episodes/byitunesid", { ...rest, since: toEpochTimestamp(since), id });
   }
 
   /**
@@ -264,17 +268,15 @@ export default class PodcastIndexClient {
       notcat?: string | string[];
     } = {}
   ): Promise<ApiResponse.RandomEpisodes> {
-    const parsedOptions: Record<string, number | string> = options.max ? { max: options.max } : {};
+    const parsedOptions: Record<string, number | string | undefined> = options.max
+      ? { max: options.max }
+      : {};
 
-    if (Array.isArray(options.lang)) {
-      parsedOptions.lang = options.lang.join(",");
-    }
-    if (Array.isArray(options.cat)) {
-      parsedOptions.cat = options.cat.join(",");
-    }
-    if (Array.isArray(options.notcat)) {
-      parsedOptions.notcat = options.notcat.join(",");
-    }
+    parsedOptions.lang = Array.isArray(options.lang) ? options.lang.join(",") : options.lang;
+    parsedOptions.cat = Array.isArray(options.cat) ? options.cat.join(",") : options.cat;
+    parsedOptions.notcat = Array.isArray(options.notcat)
+      ? options.notcat.join(",")
+      : options.notcat;
 
     return this.fetch("/episodes/random", parsedOptions);
   }

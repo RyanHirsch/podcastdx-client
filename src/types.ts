@@ -17,7 +17,7 @@ export namespace ApiResponse {
     Success = "true",
   }
 
-  export type AnyQueryOptions = Record<string, string | number | number[] | undefined>;
+  export type AnyQueryOptions = Record<string, string | string[] | number | number[] | undefined>;
 
   export interface NewPodcastFeed extends PodcastBase {
     /** [Unix Epoch] Timestamp */
