@@ -1,6 +1,6 @@
 import { keys } from "ts-transformer-keys";
 
-import { assertObjectsHaveProperties, assertObjectHasProperties } from "./utils";
+import { assertObjectHasProperties } from "./utils";
 import PodcastIndexClient from "../index";
 import { ApiResponse } from "../types";
 

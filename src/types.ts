@@ -9,6 +9,8 @@ interface PodcastBase {
   itunesId: number;
   /** The channel-level language specification of the feed. Languages accord with the RSS language spec. */
   language: string;
+  /** category id: name, NOTE: this is not always present on the raw responses and will be populated with an empty object when missing form the api response */
+  categories: Record<string, string>;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -61,8 +63,6 @@ export namespace ApiResponse {
     crawlErrors: number;
     /** The number of errors we’ve encountered trying to parse the feed content. Errors here are things like not well-formed xml, bad character encoding, etc. We fix many of these types of issues on the fly when parsing. We only increment the errors count when we can’t fix it. */
     parseErrors: number;
-    /** category id: name, NOTE: this is not always present on the raw responses and will be populated with an empty object when missing form the api response */
-    categories: Record<string, string>;
   }
 
   export interface Category {

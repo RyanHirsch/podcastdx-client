@@ -38,6 +38,7 @@ describe("recent api", () => {
         keys<ApiResponse.RecentFeeds>(),
         recentFeeds
       );
+
       assertObjectsHaveProperties<ApiResponse.NewPodcastFeed>(
         keys<ApiResponse.NewPodcastFeed>(),
         recentFeeds.feeds

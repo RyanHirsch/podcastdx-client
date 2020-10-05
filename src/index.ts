@@ -152,7 +152,7 @@ export default class PodcastIndexClient {
    * @param max the max number of items to return, defaults to 40
    * @param options additional api options
    */
-  public recentFeeds(
+  public async recentFeeds(
     max = 40,
     options: {
       /** You can specify a hard-coded unix timestamp, or a negative integer that represents a number of seconds prior to now. Either way you specify, the search will start from that time and only return feeds updated since then. */
@@ -178,7 +178,17 @@ export default class PodcastIndexClient {
       apiOptions["isCategory[]"] = options.isCategory.join(",");
     }
 
-    return this.fetch("/recent/feeds", apiOptions);
+    const result = await this.fetch<ApiResponse.RecentFeeds>("/recent/feeds", apiOptions);
+
+    return {
+      ...result,
+      feeds: result.feeds.map((feed) => {
+        if (!feed.categories) {
+          return { ...feed, categories: {} };
+        }
+        return feed;
+      }),
+    };
   }
 
   /**
