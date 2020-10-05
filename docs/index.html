@@ -69,6 +69,7 @@
 				</a>
 				<p>The is a client for interacting with <a href="https://podcastindex.org/">https://podcastindex.org/</a>. In order for this to be useful, you need to get a developer <code>API KEY</code> and <code>API SECRET</code> from <a href="https://api.podcastindex.org">https://api.podcastindex.org</a></p>
 				<p>This includes typescript types as well as JSDoc strings that should make interacting with the API easier.</p>
+				<p>Optionally provide usage analytics back to me to help me improve the library. <strong>If you do not provide this value, analytics will not be sent. It provides privacy by default.</strong></p>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
@@ -81,8 +82,9 @@
 
 <span class="hljs-comment">// assumes you have an your key and secret set as environment variables</span>
 <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> PodcastIndexClient({
-  key: process.env.API_KEY!,
-  secret: process.env.API_SECRET!,
+  key: process.env.API_KEY,
+  secret: process.env.API_SECRET,
+  enableAnalytics: <span class="hljs-literal">true</span>,
 });
 
 client.search(<span class="hljs-string">&quot;javascript&quot;</span>).then(<span class="hljs-built_in">console</span>.log);
@@ -111,6 +113,9 @@ client.episodeById(<span class="hljs-number">16795106</span>).then(<span class="
 						<a href="modules/_src___test___utils_.html">&quot;src/__test__/utils&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/_src_analytics_.html">&quot;src/analytics&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/_src_index_.html">&quot;src/index&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -134,6 +139,7 @@ client.episodeById(<span class="hljs-number">16795106</span>).then(<span class="
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
 				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 			</ul>
