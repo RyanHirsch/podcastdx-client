@@ -3,11 +3,16 @@ import fetch from "node-fetch";
 import dotEnv from "dotenv";
 import { pick } from "ramda";
 
+import { version } from "../package.json";
+import { track, init, register } from "./analytics";
 import logger from "./logger";
 import { ApiResponse } from "./types";
 import { toEpochTimestamp } from "./utils";
 
 dotEnv.config();
+
+const clientUserAgent = `podcastdx client/${version}`;
+const apiVersion = "1.0";
 
 function encodeObjectToQueryString(qs?: ApiResponse.AnyQueryOptions) {
   if (!qs) {
@@ -30,20 +35,35 @@ function encodeObjectToQueryString(qs?: ApiResponse.AnyQueryOptions) {
     .join("&");
 }
 
+register({
+  "api version": apiVersion,
+  "client user-agent": clientUserAgent,
+  "node environment": process.env.NODE_ENV,
+});
+
 export default class PodcastIndexClient {
   private apiUrl = `https://api.podcastindex.org/api/1.0`;
 
-  private userAgent = "podcastdx client/2.0";
+  private userAgent = clientUserAgent;
 
-  private version = "1.0";
+  private version = apiVersion;
 
   private key: string;
 
   private secret: string;
 
-  constructor({ key, secret }: { key: string; secret: string }) {
+  constructor({
+    key,
+    secret,
+    enableAnalytics,
+  }: {
+    key: string;
+    secret: string;
+    enableAnalytics?: boolean;
+  }) {
     this.key = key;
     this.secret = secret;
+    init(key, { enableAnalytics: enableAnalytics ?? false });
   }
 
   private generateHeaders() {
@@ -68,6 +88,7 @@ export default class PodcastIndexClient {
   }
 
   private fetch<T>(endpoint: string, qs?: ApiResponse.AnyQueryOptions): Promise<T> {
+    const start = Date.now();
     const queryString = qs ? encodeObjectToQueryString(qs) : null;
     const options = {
       method: `GET`,
@@ -77,6 +98,14 @@ export default class PodcastIndexClient {
 
     logger.log(url);
     return fetch(url, options).then((res) => {
+      track("API Call", {
+        endpoint,
+        url,
+        duration: Date.now() - start,
+        "response status": res.status,
+        "response text": res.statusText,
+        ...(queryString ? { "full query": queryString, ...qs } : undefined),
+      });
       if (res.status >= 200 && res.status < 300) {
         return res.json();
       }
