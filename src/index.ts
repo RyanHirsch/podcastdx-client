@@ -3,7 +3,6 @@ import fetch from "node-fetch";
 import dotEnv from "dotenv";
 import { pick } from "ramda";
 
-import { version } from "../package.json";
 import { track, init, register } from "./analytics";
 import logger from "./logger";
 import { ApiResponse } from "./types";
@@ -11,7 +10,7 @@ import { toEpochTimestamp } from "./utils";
 
 dotEnv.config();
 
-const clientUserAgent = `podcastdx client/${version}`;
+const clientUserAgent = `podcastdx client/2.4.1`;
 const apiVersion = "1.0";
 
 function encodeObjectToQueryString(qs?: ApiResponse.AnyQueryOptions) {

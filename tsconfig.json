@@ -15,8 +15,7 @@
     "sourceMap": true,
     "outDir": "dist",
     "baseUrl": ".",
-    "declaration": true,
-    "resolveJsonModule": true
+    "declaration": true
   },
   "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts", "dist"],
   "include": ["src/**/*.ts"]
