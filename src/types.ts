@@ -153,6 +153,7 @@ export namespace ApiResponse {
     feedImage: string;
     feedId: number;
     feedLanguage: string;
+    durartion: number;
   }
 
   export interface Search {
