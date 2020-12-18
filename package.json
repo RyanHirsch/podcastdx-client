@@ -12,7 +12,7 @@
     "prettier:check": "yarn prettier:base -- --list-different \"src/**/*.{ts,tsx}\"",
     "prettier:write": "yarn prettier:base -- --write \"src/**/*.{ts,tsx}\"",
     "start": "node dist/index.js",
-    "prepublishOnly": "yarn lint && yarn test && yarn build && ./scripts/publish.sh",
+    "prepublishOnly": "yarn lint && yarn test && yarn build && yarn validate && ./scripts/publish.sh",
     "postpublish": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag v$PACKAGE_VERSION && git push --tags",
     "prebuild": "rimraf dist",
     "build": "tsc",

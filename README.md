@@ -41,3 +41,9 @@ client.episodesByFeedId(75075).then(console.log);
 client.episodesByItunesId(1441923632).then(console.log);
 client.episodeById(16795106).then(console.log);
 ```
+
+## Releasing a new version
+
+1. Ensure you're fully committed
+   1. Make sure tests are green schema is correct `yarn tsc && yarn test && yarn validate`
+2. Run `yarn publish`
