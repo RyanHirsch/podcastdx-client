@@ -1,7 +1,6 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable no-await-in-loop */
 import PodcastIndexClient from "../index";
-import { ApiResponse, PIApiDetailedPodcast } from "../types";
 
 describe("recent", () => {
   let client: PodcastIndexClient;
@@ -44,21 +43,23 @@ describe("recent", () => {
     });
 
     it("supports walking back through episodes string", async () => {
-      const recents = (await client.recentEpisodes()).items;
+      const first = 1305556075;
+      const second = 1304492281;
+      const third = 1304390354;
 
       const secondEpisode = await client.recentEpisodes({
-        before: recents[0].id,
+        before: first,
         max: 1,
       });
 
-      expect(secondEpisode.items[0]).toHaveProperty("id", recents[1].id);
+      expect(secondEpisode.items[0]).toHaveProperty("id", second);
 
       const thirdEpisode = await client.recentEpisodes({
-        before: recents[1].id,
+        before: second,
         max: 1,
       });
 
-      expect(thirdEpisode.items[0]).toHaveProperty("id", recents[2].id);
+      expect(thirdEpisode.items[0]).toHaveProperty("id", third);
     });
   });
 

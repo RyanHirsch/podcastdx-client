@@ -11,7 +11,7 @@
     "feeds": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/ApiResponse.Category"
+        "$ref": "#/definitions/PIApiCategory"
       }
     },
     "count": {
@@ -29,7 +29,7 @@
     "status"
   ],
   "definitions": {
-    "ApiResponse.Category": {
+    "PIApiCategory": {
       "type": "object",
       "properties": {
         "id": {

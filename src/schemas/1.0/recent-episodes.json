@@ -11,7 +11,7 @@
     "items": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/ApiResponse.RecentPodcastEpisode"
+        "$ref": "#/definitions/PIApiRecentEpisode"
       }
     },
     "count": {
@@ -33,11 +33,16 @@
     "status"
   ],
   "definitions": {
-    "ApiResponse.RecentPodcastEpisode": {
+    "PIApiRecentEpisode": {
+      "description": "Returned by recentEpisodes",
       "type": "object",
       "properties": {
-        "id": {
-          "type": "number"
+        "feedTitle": {
+          "type": "string"
+        },
+        "image": {
+          "description": "URL to episode image",
+          "type": "string"
         },
         "title": {
           "type": "string"
@@ -45,13 +50,13 @@
         "link": {
           "type": "string"
         },
-        "description": {
-          "type": "string"
-        },
-        "duration": {
+        "explicit": {
           "type": "number"
         },
-        "chaptersUrl": {
+        "id": {
+          "type": "number"
+        },
+        "description": {
           "type": "string"
         },
         "guid": {
@@ -75,9 +80,6 @@
         "enclosureLength": {
           "type": "number"
         },
-        "explicit": {
-          "type": "number"
-        },
         "episode": {
           "type": [
             "null",
@@ -93,10 +95,6 @@
         "season": {
           "type": "number"
         },
-        "image": {
-          "description": "URL to episode image",
-          "type": "string"
-        },
         "feedItunesId": {
           "type": [
             "null",
@@ -110,14 +108,51 @@
         "feedId": {
           "type": "number"
         },
-        "feedTitle": {
-          "type": "string"
-        },
         "feedLanguage": {
           "type": "string"
         },
-        "transcriptUrl": {
-          "type": "string"
+        "soundbite": {
+          "type": "object",
+          "properties": {
+            "startTime": {
+              "type": "number"
+            },
+            "duration": {
+              "type": "number"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "duration",
+            "startTime",
+            "title"
+          ]
+        },
+        "soundbites": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "startTime": {
+                "type": "number"
+              },
+              "duration": {
+                "type": "number"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "duration",
+              "startTime",
+              "title"
+            ]
+          }
         }
       },
       "additionalProperties": false,

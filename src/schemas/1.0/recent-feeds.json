@@ -17,7 +17,7 @@
     "feeds": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/ApiResponse.NewPodcastFeed"
+        "$ref": "#/definitions/PIApiNewFeed"
       }
     },
     "count": {
@@ -40,9 +40,14 @@
     "status"
   ],
   "definitions": {
-    "ApiResponse.NewPodcastFeed": {
+    "PIApiNewFeed": {
+      "description": "from recentFeeds",
       "type": "object",
       "properties": {
+        "newestItemPublishTime": {
+          "description": "[Unix Epoch] Timestamp",
+          "type": "number"
+        },
         "id": {
           "description": "The internal podcastindex.org feed id.",
           "type": "number"
@@ -79,10 +84,6 @@
               "type": "null"
             }
           ]
-        },
-        "newestItemPublishTime": {
-          "description": "[Unix Epoch] Timestamp",
-          "type": "number"
         }
       },
       "additionalProperties": false,

@@ -14,7 +14,7 @@
     "episodes": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/ApiResponse.RandomPodcastEpisode"
+        "$ref": "#/definitions/PIApiRandomEpisode"
       }
     },
     "count": {
@@ -33,9 +33,27 @@
     "status"
   ],
   "definitions": {
-    "ApiResponse.RandomPodcastEpisode": {
+    "PIApiRandomEpisode": {
+      "description": "Returned by episodesRandom",
       "type": "object",
       "properties": {
+        "feedTitle": {
+          "type": "string"
+        },
+        "categories": {
+          "description": "category id: name, NOTE: this is not always present on the raw responses and will be populated with an empty object when missing form the api response",
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "id": {
           "type": "number"
         },
@@ -104,9 +122,6 @@
         "feedId": {
           "type": "number"
         },
-        "feedTitle": {
-          "type": "string"
-        },
         "feedLanguage": {
           "type": "string"
         },
@@ -116,18 +131,48 @@
             "string"
           ]
         },
-        "categories": {
-          "anyOf": [
-            {
-              "type": "object",
-              "additionalProperties": {
+        "soundbite": {
+          "type": "object",
+          "properties": {
+            "startTime": {
+              "type": "number"
+            },
+            "duration": {
+              "type": "number"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "duration",
+            "startTime",
+            "title"
+          ]
+        },
+        "soundbites": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "startTime": {
+                "type": "number"
+              },
+              "duration": {
+                "type": "number"
+              },
+              "title": {
                 "type": "string"
               }
             },
-            {
-              "type": "null"
-            }
-          ]
+            "additionalProperties": false,
+            "required": [
+              "duration",
+              "startTime",
+              "title"
+            ]
+          }
         }
       },
       "additionalProperties": false,

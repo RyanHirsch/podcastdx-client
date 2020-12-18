@@ -11,7 +11,7 @@
     "feeds": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/ApiResponse.PodcastFeed"
+        "$ref": "#/definitions/PIApiFeed"
       }
     },
     "count": {
@@ -33,9 +33,16 @@
     "status"
   ],
   "definitions": {
-    "ApiResponse.PodcastFeed": {
+    "PIApiFeed": {
+      "description": "Returned by search",
       "type": "object",
       "properties": {
+        "locked": {
+          "type": "number"
+        },
+        "imageUrlHash": {
+          "type": "number"
+        },
         "originalUrl": {
           "description": "The url of the feed, before it changed to it’s current url.",
           "type": "string"
@@ -147,12 +154,6 @@
               "type": "null"
             }
           ]
-        },
-        "locked": {
-          "type": "number"
-        },
-        "imageUrlHash": {
-          "type": "number"
         }
       },
       "additionalProperties": false,

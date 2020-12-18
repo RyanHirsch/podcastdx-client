@@ -1,5 +1,6 @@
 {
   "title": "`/api/1.0/podcasts/byfeedid` - This call returns everything we know about the feed.",
+  "description": "Not directly returned by any api",
   "type": "object",
   "properties": {
     "status": {
@@ -9,9 +10,125 @@
       ]
     },
     "feed": {
-      "additionalProperties": false,
+      "$ref": "#/definitions/PIApiPodcast"
+    },
+    "description": {
+      "type": "string"
+    },
+    "query": {
       "type": "object",
       "properties": {
+        "url": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "description",
+    "feed",
+    "query",
+    "status"
+  ],
+  "definitions": {
+    "PIApiPodcast": {
+      "description": "Returned by podcastBy*",
+      "type": "object",
+      "properties": {
+        "chash": {
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "model": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "method": {
+                      "type": "string"
+                    },
+                    "suggested": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "method",
+                    "suggested",
+                    "type"
+                  ]
+                },
+                "destinations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "address": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "split": {
+                        "type": "number"
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "address",
+                      "name",
+                      "split",
+                      "type"
+                    ]
+                  }
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "destinations",
+                "model"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "funding": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "message",
+            "url"
+          ]
+        },
+        "locked": {
+          "type": "number"
+        },
+        "imageUrlHash": {
+          "type": "number"
+        },
         "originalUrl": {
           "description": "The url of the feed, before it changed to it’s current url.",
           "type": "string"
@@ -123,97 +240,9 @@
               "type": "null"
             }
           ]
-        },
-        "locked": {
-          "type": "number"
-        },
-        "imageUrlHash": {
-          "type": "number"
-        },
-        "chash": {
-          "type": "string"
-        },
-        "value": {
-          "anyOf": [
-            {
-              "type": "object",
-              "properties": {
-                "model": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string"
-                    },
-                    "method": {
-                      "type": "string"
-                    },
-                    "suggested": {
-                      "type": "string"
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": [
-                    "method",
-                    "suggested",
-                    "type"
-                  ]
-                },
-                "destinations": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "address": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "split": {
-                        "type": "number"
-                      }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                      "address",
-                      "name",
-                      "split",
-                      "type"
-                    ]
-                  }
-                }
-              },
-              "additionalProperties": false,
-              "required": [
-                "destinations",
-                "model"
-              ]
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "funding": {
-          "type": "object",
-          "properties": {
-            "url": {
-              "type": "string"
-            },
-            "message": {
-              "type": "string"
-            }
-          },
-          "additionalProperties": false,
-          "required": [
-            "message",
-            "url"
-          ]
         }
       },
+      "additionalProperties": false,
       "required": [
         "artwork",
         "author",
@@ -241,30 +270,6 @@
         "url"
       ]
     },
-    "description": {
-      "type": "string"
-    },
-    "query": {
-      "type": "object",
-      "properties": {
-        "url": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false
-    }
-  },
-  "additionalProperties": false,
-  "required": [
-    "description",
-    "feed",
-    "query",
-    "status"
-  ],
-  "definitions": {
     "PodcastFeedType": {
       "enum": [
         0,

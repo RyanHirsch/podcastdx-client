@@ -8,7 +8,7 @@
     "feeds": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/ApiResponse.RecentNewPodcastFeed"
+        "$ref": "#/definitions/PIApiRecentNewFeed"
       }
     },
     "count": {
@@ -38,7 +38,8 @@
       ],
       "type": "string"
     },
-    "ApiResponse.RecentNewPodcastFeed": {
+    "PIApiRecentNewFeed": {
+      "description": "from recentNewFeeds",
       "type": "object",
       "properties": {
         "id": {

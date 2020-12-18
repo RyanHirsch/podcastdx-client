@@ -12,7 +12,7 @@
       "type": "string"
     },
     "episode": {
-      "$ref": "#/definitions/ApiResponse.PodcastEpisode"
+      "$ref": "#/definitions/PIApiEpisodeDetail"
     },
     "description": {
       "type": "string"
@@ -26,9 +26,22 @@
     "status"
   ],
   "definitions": {
-    "ApiResponse.PodcastEpisode": {
+    "PIApiEpisodeDetail": {
+      "description": "Returned by episodeById",
       "type": "object",
       "properties": {
+        "feedTitle": {
+          "type": "string"
+        },
+        "transcriptUrl": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "duration": {
+          "type": "number"
+        },
         "id": {
           "type": "number"
         },
@@ -40,15 +53,6 @@
         },
         "description": {
           "type": "string"
-        },
-        "duration": {
-          "type": "number"
-        },
-        "chaptersUrl": {
-          "type": [
-            "null",
-            "string"
-          ]
         },
         "guid": {
           "type": "string"
@@ -106,25 +110,56 @@
         "feedId": {
           "type": "number"
         },
-        "feedTitle": {
-          "type": "string"
-        },
         "feedLanguage": {
           "type": "string"
         },
-        "transcriptUrl": {
+        "chaptersUrl": {
           "type": [
             "null",
             "string"
           ]
         },
         "soundbite": {
-          "$ref": "#/definitions/ApiResponse.SoundbiteDefinition"
+          "type": "object",
+          "properties": {
+            "startTime": {
+              "type": "number"
+            },
+            "duration": {
+              "type": "number"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "duration",
+            "startTime",
+            "title"
+          ]
         },
         "soundbites": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/ApiResponse.SoundbiteDefinition"
+            "type": "object",
+            "properties": {
+              "startTime": {
+                "type": "number"
+              },
+              "duration": {
+                "type": "number"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "duration",
+              "startTime",
+              "title"
+            ]
           }
         }
       },
@@ -154,26 +189,6 @@
         "season",
         "title",
         "transcriptUrl"
-      ]
-    },
-    "ApiResponse.SoundbiteDefinition": {
-      "type": "object",
-      "properties": {
-        "startTime": {
-          "type": "number"
-        },
-        "duration": {
-          "type": "number"
-        },
-        "title": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "duration",
-        "startTime",
-        "title"
       ]
     }
   },

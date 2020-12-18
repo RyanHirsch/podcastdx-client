@@ -11,7 +11,7 @@
     "items": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/ApiResponse.EpisodeInfo"
+        "$ref": "#/definitions/PIApiEpisodeInfo"
       }
     },
     "count": {
@@ -33,9 +33,19 @@
     "status"
   ],
   "definitions": {
-    "ApiResponse.EpisodeInfo": {
+    "PIApiEpisodeInfo": {
+      "description": "Returned by episodesByFeed*, episodesByItunesId",
       "type": "object",
       "properties": {
+        "duration": {
+          "type": "number"
+        },
+        "transcriptUrl": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
         "id": {
           "type": "number"
         },
@@ -58,10 +68,6 @@
           "type": "string"
         },
         "dateCrawled": {
-          "type": "number"
-        },
-        "duration": {
-          "description": "Duration in minutes",
           "type": "number"
         },
         "enclosureUrl": {
@@ -117,19 +123,47 @@
             "string"
           ]
         },
-        "transcriptUrl": {
-          "type": [
-            "null",
-            "string"
-          ]
-        },
         "soundbite": {
-          "$ref": "#/definitions/ApiResponse.SoundbiteDefinition"
+          "type": "object",
+          "properties": {
+            "startTime": {
+              "type": "number"
+            },
+            "duration": {
+              "type": "number"
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "duration",
+            "startTime",
+            "title"
+          ]
         },
         "soundbites": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/ApiResponse.SoundbiteDefinition"
+            "type": "object",
+            "properties": {
+              "startTime": {
+                "type": "number"
+              },
+              "duration": {
+                "type": "number"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "duration",
+              "startTime",
+              "title"
+            ]
           }
         }
       },
@@ -158,26 +192,6 @@
         "season",
         "title",
         "transcriptUrl"
-      ]
-    },
-    "ApiResponse.SoundbiteDefinition": {
-      "type": "object",
-      "properties": {
-        "startTime": {
-          "type": "number"
-        },
-        "duration": {
-          "type": "number"
-        },
-        "title": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "duration",
-        "startTime",
-        "title"
       ]
     }
   },

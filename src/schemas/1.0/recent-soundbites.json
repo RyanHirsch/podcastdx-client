@@ -11,7 +11,7 @@
     "items": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/ApiResponse.Soundbite"
+        "$ref": "#/definitions/PiApiSoundbite"
       }
     },
     "count": {
@@ -29,7 +29,8 @@
     "status"
   ],
   "definitions": {
-    "ApiResponse.Soundbite": {
+    "PiApiSoundbite": {
+      "description": "from recentSoundbites",
       "type": "object",
       "properties": {
         "enclosureUrl": {

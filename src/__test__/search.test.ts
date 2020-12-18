@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import PodcastIndexClient from "../index";
-import { ApiResponse } from "../types";
+import { PIApiEpisodeInfo } from "../types";
 
 describe("search api", () => {
   let client: PodcastIndexClient;
@@ -22,7 +22,7 @@ describe("search api", () => {
     const searchResult = await client.search("sexual wellness", { max: 3 });
     expect(searchResult.count).toEqual(3);
 
-    const allEpisodes: ApiResponse.EpisodeInfo[] = [];
+    const allEpisodes: PIApiEpisodeInfo[] = [];
     for (let i = 0; i < searchResult.feeds.length; i += 1) {
       const feed = searchResult.feeds[i];
       const feedEpisodes = await client.episodesByFeedId(feed.id);
@@ -36,7 +36,7 @@ describe("search api", () => {
     const searchResult = await client.search("sexual wellness", { clean: true, max: 5 });
     expect(searchResult.count).toBeLessThanOrEqual(5);
 
-    const allEpisodes: ApiResponse.EpisodeInfo[] = [];
+    const allEpisodes: PIApiEpisodeInfo[] = [];
     for (let i = 0; i < searchResult.feeds.length; i += 1) {
       const feed = searchResult.feeds[i];
       const feedEpisodes = await client.episodesByFeedId(feed.id);

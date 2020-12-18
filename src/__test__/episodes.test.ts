@@ -1,17 +1,17 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable no-await-in-loop */
 import PodcastIndexClient from "../index";
-import { ApiResponse, PIApiDetailedPodcast } from "../types";
+import { PIApiEpisodeInfo, PIApiRandomEpisode } from "../types";
 import { toEpochTimestamp } from "../utils";
 
 describe("episodes api", () => {
   let client: PodcastIndexClient;
-  let episodesByFeedUrl: ApiResponse.EpisodeInfo[];
-  let episodesByFeedId: ApiResponse.EpisodeInfo[];
-  let episodesByItunesId: ApiResponse.EpisodeInfo[];
+  let episodesByFeedUrl: PIApiEpisodeInfo[];
+  let episodesByFeedId: PIApiEpisodeInfo[];
+  let episodesByItunesId: PIApiEpisodeInfo[];
   // TODO: Why are these types different?
   // let episodeById: ApiResponse.PodcastEpisode;
-  let randomEpisode: ApiResponse.RandomPodcastEpisode;
+  let randomEpisode: PIApiRandomEpisode;
 
   const feedUrl = "https://feeds.theincomparable.com/batmanuniversity";
   const feedId = 75075;

@@ -1,21 +1,26 @@
 {
   "cSpell.words": [
     "Itunes",
+    "OR'd",
     "Podcastindex",
     "byfeedid",
     "byfeedurl",
     "byid",
     "byitunesid",
     "byterm",
+    "chash",
     "newfeeds",
     "notcat",
     "podcastdx",
     "prebuild",
     "precommit",
-    "respawn"
+    "rando",
+    "respawn",
+    "typedoc"
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "grammarly.userWords": [
+    "api",
     "http",
     "https",
     "mixpanel",
