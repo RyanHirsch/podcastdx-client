@@ -1,0 +1,75 @@
+{
+  "title": "`/api/1.0/recent/newfeeds` - This call returns every new feed added to the index over the past 24 hours in reverse chronological order.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "$ref": "#/definitions/ApiResponse.NewFeedStatus"
+    },
+    "feeds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ApiResponse.RecentNewPodcastFeed"
+      }
+    },
+    "count": {
+      "type": "number"
+    },
+    "max": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "count",
+    "description",
+    "feeds",
+    "max",
+    "status"
+  ],
+  "definitions": {
+    "ApiResponse.NewFeedStatus": {
+      "enum": [
+        "confirmed",
+        "pending",
+        "true"
+      ],
+      "type": "string"
+    },
+    "ApiResponse.RecentNewPodcastFeed": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "url": {
+          "type": "string"
+        },
+        "timeAdded": {
+          "type": "number"
+        },
+        "status": {
+          "$ref": "#/definitions/ApiResponse.NewFeedStatus"
+        },
+        "contentHash": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "contentHash",
+        "id",
+        "language",
+        "status",
+        "timeAdded",
+        "url"
+      ]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

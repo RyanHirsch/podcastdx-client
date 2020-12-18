@@ -1,0 +1,181 @@
+{
+  "title": "`/api/1.0/episodes/byid` - Get all the metadata for a single episode by passing its id.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "true"
+      ]
+    },
+    "id": {
+      "type": "string"
+    },
+    "episode": {
+      "$ref": "#/definitions/ApiResponse.PodcastEpisode"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "description",
+    "episode",
+    "id",
+    "status"
+  ],
+  "definitions": {
+    "ApiResponse.PodcastEpisode": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "chaptersUrl": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "guid": {
+          "type": "string"
+        },
+        "datePublished": {
+          "type": "number"
+        },
+        "datePublishedPretty": {
+          "type": "string"
+        },
+        "dateCrawled": {
+          "type": "number"
+        },
+        "enclosureUrl": {
+          "type": "string"
+        },
+        "enclosureType": {
+          "type": "string"
+        },
+        "enclosureLength": {
+          "type": "number"
+        },
+        "explicit": {
+          "type": "number"
+        },
+        "episode": {
+          "type": [
+            "null",
+            "number"
+          ]
+        },
+        "episodeType": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "season": {
+          "type": "number"
+        },
+        "image": {
+          "description": "URL to episode image",
+          "type": "string"
+        },
+        "feedItunesId": {
+          "type": [
+            "null",
+            "number"
+          ]
+        },
+        "feedImage": {
+          "description": "URL to feed image",
+          "type": "string"
+        },
+        "feedId": {
+          "type": "number"
+        },
+        "feedTitle": {
+          "type": "string"
+        },
+        "feedLanguage": {
+          "type": "string"
+        },
+        "transcriptUrl": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "soundbite": {
+          "$ref": "#/definitions/ApiResponse.SoundbiteDefinition"
+        },
+        "soundbites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ApiResponse.SoundbiteDefinition"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "chaptersUrl",
+        "dateCrawled",
+        "datePublished",
+        "datePublishedPretty",
+        "description",
+        "duration",
+        "enclosureLength",
+        "enclosureType",
+        "enclosureUrl",
+        "episode",
+        "episodeType",
+        "explicit",
+        "feedId",
+        "feedImage",
+        "feedItunesId",
+        "feedLanguage",
+        "feedTitle",
+        "guid",
+        "id",
+        "image",
+        "link",
+        "season",
+        "title",
+        "transcriptUrl"
+      ]
+    },
+    "ApiResponse.SoundbiteDefinition": {
+      "type": "object",
+      "properties": {
+        "startTime": {
+          "type": "number"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "duration",
+        "startTime",
+        "title"
+      ]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

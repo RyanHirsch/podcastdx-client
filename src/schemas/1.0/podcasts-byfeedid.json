@@ -1,0 +1,277 @@
+{
+  "title": "`/api/1.0/podcasts/byfeedid` - This call returns everything we know about the feed.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "true"
+      ]
+    },
+    "feed": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "originalUrl": {
+          "description": "The url of the feed, before it changed to it’s current url.",
+          "type": "string"
+        },
+        "link": {
+          "description": "The channel level link in the feed.",
+          "type": "string"
+        },
+        "description": {
+          "description": "The channel-level description.",
+          "type": "string"
+        },
+        "author": {
+          "description": "The channel-level author element. Usually iTunes specific, but could be from another namespace if not present.",
+          "type": "string"
+        },
+        "ownerName": {
+          "description": "The channel-level owner:name element. Usually iTunes specific, but could be from another namespace if not present.",
+          "type": "string"
+        },
+        "image": {
+          "description": "The channel-level image element.",
+          "type": "string"
+        },
+        "artwork": {
+          "description": "The seemingly best artwork we can find for the feed. Might be the same as ‘image’ in most instances.",
+          "type": "string"
+        },
+        "lastUpdateTime": {
+          "description": "[Unix Epoch] The channel-level pubDate for the feed, if it’s sane. If not, this is a heuristic value, arrived at by analyzing other parts of the feed, like item-level pubDates.",
+          "type": "number"
+        },
+        "lastCrawlTime": {
+          "description": "[Unix Epoch] The last time we attempted to pull this feed from it’s url.",
+          "type": "number"
+        },
+        "lastParseTime": {
+          "description": "[Unix Epoch] The last time we tried to parse the downloaded feed content.",
+          "type": "number"
+        },
+        "lastGoodHttpStatusTime": {
+          "description": "[Unix Epoch] Timestamp of the last time we got a \"good\", meaning non-4xx/non-5xx, status code when pulling this feed from it’s url.",
+          "type": "number"
+        },
+        "lastHttpStatus": {
+          "description": "The last http status code we got when pulling this feed from it’s url. You will see some made up status codes sometimes. These are what we use to track state within the feed puller. These all start with 9xx.",
+          "type": "number"
+        },
+        "contentType": {
+          "description": "The Content-Type header from the last time we pulled this feed from it’s url.",
+          "type": "string"
+        },
+        "generator": {
+          "description": "The channel-level generator element if there is one.",
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "type": {
+          "$ref": "#/definitions/PodcastFeedType",
+          "description": "0 = RSS, 1 = ATOM"
+        },
+        "dead": {
+          "description": "At some point, we give up trying to process a feed and mark it as dead. This is usually after 1000 errors without a successful pull/parse cycle. Once the feed is marked dead, we only check it once per month.",
+          "type": "number"
+        },
+        "crawlErrors": {
+          "description": "The number of errors we’ve encountered trying to pull a copy of the feed. Errors are things like a 500 or 404 response, a server timeout, bad encoding, etc.",
+          "type": "number"
+        },
+        "parseErrors": {
+          "description": "The number of errors we’ve encountered trying to parse the feed content. Errors here are things like not well-formed xml, bad character encoding, etc. We fix many of these types of issues on the fly when parsing. We only increment the errors count when we can’t fix it.",
+          "type": "number"
+        },
+        "id": {
+          "description": "The internal podcastindex.org feed id.",
+          "type": "number"
+        },
+        "title": {
+          "description": "The feed title.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The current feed url.",
+          "type": "string"
+        },
+        "itunesId": {
+          "description": "The iTunes id of this feed if there is one, and we know what it is.",
+          "type": [
+            "null",
+            "number"
+          ]
+        },
+        "language": {
+          "description": "The channel-level language specification of the feed. Languages accord with the RSS language spec.",
+          "type": "string"
+        },
+        "categories": {
+          "description": "category id: name, NOTE: this is not always present on the raw responses and will be populated with an empty object when missing form the api response",
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locked": {
+          "type": "number"
+        },
+        "imageUrlHash": {
+          "type": "number"
+        },
+        "chash": {
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "model": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "method": {
+                      "type": "string"
+                    },
+                    "suggested": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "method",
+                    "suggested",
+                    "type"
+                  ]
+                },
+                "destinations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "address": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "split": {
+                        "type": "number"
+                      }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                      "address",
+                      "name",
+                      "split",
+                      "type"
+                    ]
+                  }
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "destinations",
+                "model"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "funding": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "message",
+            "url"
+          ]
+        }
+      },
+      "required": [
+        "artwork",
+        "author",
+        "categories",
+        "contentType",
+        "crawlErrors",
+        "dead",
+        "description",
+        "generator",
+        "id",
+        "image",
+        "itunesId",
+        "language",
+        "lastCrawlTime",
+        "lastGoodHttpStatusTime",
+        "lastHttpStatus",
+        "lastParseTime",
+        "lastUpdateTime",
+        "link",
+        "originalUrl",
+        "ownerName",
+        "parseErrors",
+        "title",
+        "type",
+        "url"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "query": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "description",
+    "feed",
+    "query",
+    "status"
+  ],
+  "definitions": {
+    "PodcastFeedType": {
+      "enum": [
+        0,
+        1
+      ],
+      "type": "number"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

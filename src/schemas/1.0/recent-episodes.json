@@ -1,0 +1,150 @@
+{
+  "title": "`/api/1.0/recent/episodes` - This call returns the most recent [max] number of episodes globally across the whole index, in reverse chronological order.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "true"
+      ]
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ApiResponse.RecentPodcastEpisode"
+      }
+    },
+    "count": {
+      "type": "number"
+    },
+    "max": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "count",
+    "description",
+    "items",
+    "max",
+    "status"
+  ],
+  "definitions": {
+    "ApiResponse.RecentPodcastEpisode": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "chaptersUrl": {
+          "type": "string"
+        },
+        "guid": {
+          "type": "string"
+        },
+        "datePublished": {
+          "type": "number"
+        },
+        "datePublishedPretty": {
+          "type": "string"
+        },
+        "dateCrawled": {
+          "type": "number"
+        },
+        "enclosureUrl": {
+          "type": "string"
+        },
+        "enclosureType": {
+          "type": "string"
+        },
+        "enclosureLength": {
+          "type": "number"
+        },
+        "explicit": {
+          "type": "number"
+        },
+        "episode": {
+          "type": [
+            "null",
+            "number"
+          ]
+        },
+        "episodeType": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "season": {
+          "type": "number"
+        },
+        "image": {
+          "description": "URL to episode image",
+          "type": "string"
+        },
+        "feedItunesId": {
+          "type": [
+            "null",
+            "number"
+          ]
+        },
+        "feedImage": {
+          "description": "URL to feed image",
+          "type": "string"
+        },
+        "feedId": {
+          "type": "number"
+        },
+        "feedTitle": {
+          "type": "string"
+        },
+        "feedLanguage": {
+          "type": "string"
+        },
+        "transcriptUrl": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "dateCrawled",
+        "datePublished",
+        "datePublishedPretty",
+        "description",
+        "enclosureLength",
+        "enclosureType",
+        "enclosureUrl",
+        "episode",
+        "episodeType",
+        "explicit",
+        "feedId",
+        "feedImage",
+        "feedItunesId",
+        "feedLanguage",
+        "feedTitle",
+        "guid",
+        "id",
+        "image",
+        "link",
+        "season",
+        "title"
+      ]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

@@ -1,0 +1,185 @@
+{
+  "title": "`/api/1.0/episodes/byitunesid` - If we have an itunes id on file for a feed, then this call returns all the episodes we know about for the feed, in reverse chronological order.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "true"
+      ]
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ApiResponse.EpisodeInfo"
+      }
+    },
+    "count": {
+      "type": "number"
+    },
+    "query": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "count",
+    "description",
+    "items",
+    "query",
+    "status"
+  ],
+  "definitions": {
+    "ApiResponse.EpisodeInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "guid": {
+          "type": "string"
+        },
+        "datePublished": {
+          "type": "number"
+        },
+        "datePublishedPretty": {
+          "type": "string"
+        },
+        "dateCrawled": {
+          "type": "number"
+        },
+        "duration": {
+          "description": "Duration in minutes",
+          "type": "number"
+        },
+        "enclosureUrl": {
+          "type": "string"
+        },
+        "enclosureType": {
+          "type": "string"
+        },
+        "enclosureLength": {
+          "type": "number"
+        },
+        "explicit": {
+          "type": "number"
+        },
+        "episode": {
+          "type": [
+            "null",
+            "number"
+          ]
+        },
+        "episodeType": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "season": {
+          "type": "number"
+        },
+        "image": {
+          "description": "URL to episode image",
+          "type": "string"
+        },
+        "feedItunesId": {
+          "type": [
+            "null",
+            "number"
+          ]
+        },
+        "feedImage": {
+          "description": "URL to feed image",
+          "type": "string"
+        },
+        "feedId": {
+          "type": "number"
+        },
+        "feedLanguage": {
+          "type": "string"
+        },
+        "chaptersUrl": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "transcriptUrl": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "soundbite": {
+          "$ref": "#/definitions/ApiResponse.SoundbiteDefinition"
+        },
+        "soundbites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ApiResponse.SoundbiteDefinition"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "chaptersUrl",
+        "dateCrawled",
+        "datePublished",
+        "datePublishedPretty",
+        "description",
+        "duration",
+        "enclosureLength",
+        "enclosureType",
+        "enclosureUrl",
+        "episode",
+        "episodeType",
+        "explicit",
+        "feedId",
+        "feedImage",
+        "feedItunesId",
+        "feedLanguage",
+        "guid",
+        "id",
+        "image",
+        "link",
+        "season",
+        "title",
+        "transcriptUrl"
+      ]
+    },
+    "ApiResponse.SoundbiteDefinition": {
+      "type": "object",
+      "properties": {
+        "startTime": {
+          "type": "number"
+        },
+        "duration": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "duration",
+        "startTime",
+        "title"
+      ]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

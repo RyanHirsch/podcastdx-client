@@ -1,6 +1,4 @@
-import { keys } from "ts-transformer-keys";
-
-import { assertObjectsHaveProperties, assertObjectHasProperties } from "./utils";
+/* eslint-disable no-await-in-loop */
 import PodcastIndexClient from "../index";
 import { ApiResponse } from "../types";
 
@@ -13,13 +11,45 @@ describe("search api", () => {
     });
   });
 
-  it("response has known keys", async () => {
+  it("supports basic query", async () => {
+    const defaultCount = 25;
     const searchResult = await client.search("javascript");
+    expect(searchResult.count).toEqual(defaultCount);
+    expect(searchResult.feeds).toHaveLength(defaultCount);
+  });
 
-    assertObjectHasProperties<ApiResponse.Search>(keys<ApiResponse.Search>(), searchResult);
-    assertObjectsHaveProperties<ApiResponse.PodcastFeed>(
-      keys<ApiResponse.PodcastFeed>(),
-      searchResult.feeds
-    );
+  it("supports explicit results", async () => {
+    const searchResult = await client.search("sexual wellness", { max: 3 });
+    expect(searchResult.count).toEqual(3);
+
+    const allEpisodes: ApiResponse.EpisodeInfo[] = [];
+    for (let i = 0; i < searchResult.feeds.length; i += 1) {
+      const feed = searchResult.feeds[i];
+      const feedEpisodes = await client.episodesByFeedId(feed.id);
+      allEpisodes.push(...feedEpisodes.items);
+    }
+
+    expect(allEpisodes.some((ep) => ep.explicit)).toEqual(true);
+  });
+
+  it("supports clean only results", async () => {
+    const searchResult = await client.search("sexual wellness", { clean: true, max: 5 });
+    expect(searchResult.count).toBeLessThanOrEqual(5);
+
+    const allEpisodes: ApiResponse.EpisodeInfo[] = [];
+    for (let i = 0; i < searchResult.feeds.length; i += 1) {
+      const feed = searchResult.feeds[i];
+      const feedEpisodes = await client.episodesByFeedId(feed.id);
+      allEpisodes.push(...feedEpisodes.items);
+    }
+
+    expect(allEpisodes.some((ep) => ep.explicit)).toEqual(false);
+  });
+
+  it("supports max items returned", async () => {
+    const max = 2;
+    const searchResult = await client.search("javascript", { max });
+    expect(searchResult.count).toEqual(max);
+    expect(searchResult.feeds).toHaveLength(max);
   });
 });

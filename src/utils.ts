@@ -15,3 +15,15 @@ export function toEpochTimestamp(date: number | Date | undefined): number | unde
   }
   return ts;
 }
+
+export function normalizeKey<ObjT, KeyT extends keyof ObjT>(
+  fn: (ex: ObjT[KeyT]) => ObjT[KeyT],
+  key: KeyT,
+  obj: ObjT
+): ObjT {
+  const val = fn(obj[key]);
+  return {
+    ...obj,
+    [key]: val,
+  };
+}

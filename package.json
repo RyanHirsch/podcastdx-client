@@ -19,6 +19,11 @@
     "test": "jest",
     "lint": "eslint --ext .js,.ts src/",
     "test:watch": "jest --watch",
+    "test:episodes": "DEBUG=* jest episodes",
+    "test:podcasts": "DEBUG=* jest podcasts",
+    "test:recent": "DEBUG=* jest recent",
+    "test:search": "DEBUG=* jest search",
+    "validate": "DEBUG=* ts-node -r tsconfig-paths/register src/schemas/validate.ts",
     "dev": "DEBUG=* ts-node -r tsconfig-paths/register example.ts",
     "dev:watch": "ts-node-dev --respawn --no-notify example.ts"
   },
@@ -50,6 +55,8 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
+    "ajv": "^6.12.6",
+    "typescript-json-schema": "^0.43.0",
     "debug": "^4.2.0",
     "dotenv": "^8.2.0",
     "mixpanel": "^0.13.0",

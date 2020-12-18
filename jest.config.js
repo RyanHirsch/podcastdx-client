@@ -10,9 +10,6 @@ module.exports = {
   globals: {
     "ts-jest": {
       tsConfig: "tsconfig.jest.json",
-      astTransformers: {
-        before: ["ts-jest-keys-transformer.js"],
-      },
     },
   },
 };

@@ -5,12 +5,77 @@ interface PodcastBase {
   title: string;
   /** The current feed url. */
   url: string;
-  /** The itunes id of this feed if there is one, and we know what it is. */
-  itunesId: number;
+  /** The iTunes id of this feed if there is one, and we know what it is. */
+  itunesId: number | null;
   /** The channel-level language specification of the feed. Languages accord with the RSS language spec. */
   language: string;
   /** category id: name, NOTE: this is not always present on the raw responses and will be populated with an empty object when missing form the api response */
-  categories: Record<string, string>;
+  categories: {
+    [k: string]: string;
+  } | null;
+  locked?: number;
+  imageUrlHash?: number;
+}
+
+export interface PIApiEpisodeBase {
+  id: number;
+  title: string;
+  link: string;
+  description: string;
+  guid: string;
+  datePublished: number;
+  datePublishedPretty: string;
+  dateCrawled: number;
+  enclosureUrl: string;
+  enclosureType: string;
+  enclosureLength: number;
+  explicit: number;
+  episode: number | null;
+  episodeType: string | null;
+  season: number;
+  /** URL to episode image */
+  image: string;
+  feedItunesId: number | null;
+  /** URL to feed image */
+  feedImage: string;
+  feedId: number;
+  feedLanguage: string;
+  chaptersUrl: string | null;
+  soundbite?: ApiResponse.SoundbiteDefinition;
+  soundbites?: Array<ApiResponse.SoundbiteDefinition>;
+}
+
+/** Returned by episodeById */
+export interface PIApiEpisodeDetail extends PIApiEpisodeBase {
+  feedTitle: string;
+  transcriptUrl: string | null;
+  duration: number;
+}
+
+/** Returned by episodesByFeed*, episodesByItunesId */
+export type PIApiEpisodeInfo = PIApiEpisodeBase;
+
+/** Returned by episodesRandom */
+export interface PIApiRandomEpisode extends PIApiEpisodeBase {
+  feedTitle: string;
+  /** category id: name, NOTE: this is not always present on the raw responses and will be populated with an empty object when missing form the api response */
+  categories: {
+    [k: string]: string;
+  } | null;
+}
+
+export interface PIApiDetailedPodcast extends ApiResponse.PodcastFeed {
+  chash?: string;
+  value?: {
+    model: { type: string; method: string; suggested: string };
+    destinations: Array<{
+      name: string;
+      address: string;
+      type: string;
+      split: number;
+    }>;
+  } | null;
+  funding?: { url: string; message: string };
 }
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -19,9 +84,32 @@ export namespace ApiResponse {
     Success = "true",
   }
 
-  export type AnyQueryOptions = Record<string, string | string[] | number | number[] | undefined>;
+  export enum NewFeedStatus {
+    Confirmed = "confirmed",
+    Success = "true",
+    Pending = "pending",
+  }
 
-  export interface NewPodcastFeed extends PodcastBase {
+  export type AnyQueryOptions = Record<
+    string,
+    string | string[] | number | number[] | boolean | undefined
+  >;
+
+  export interface NewPodcastFeed {
+    /** The internal podcastindex.org feed id. */
+    id: number;
+    /** The feed title. */
+    title: string;
+    /** The current feed url. */
+    url: string;
+    /** The iTunes id of this feed if there is one, and we know what it is. */
+    itunesId: number | null;
+    /** The channel-level language specification of the feed. Languages accord with the RSS language spec. */
+    language: string;
+    /** category id: name, NOTE: this is not always present on the raw responses and will be populated with an empty object when missing form the api response */
+    categories: {
+      [k: string]: string;
+    } | null;
     /** [Unix Epoch] Timestamp */
     newestItemPublishTime: number;
   }
@@ -54,7 +142,7 @@ export namespace ApiResponse {
     /** The Content-Type header from the last time we pulled this feed from it’s url. */
     contentType: string;
     /** The channel-level generator element if there is one. */
-    generator: string;
+    generator: string | null;
     /** 0 = RSS, 1 = ATOM */
     type: PodcastFeedType;
     /** At some point, we give up trying to process a feed and mark it as dead. This is usually after 1000 errors without a successful pull/parse cycle. Once the feed is marked dead, we only check it once per month. */
@@ -78,11 +166,19 @@ export namespace ApiResponse {
     contentHash: string;
   }
 
+  export interface SoundbiteDefinition {
+    startTime: number;
+    duration: number;
+    title: string;
+  }
+
   export interface PodcastEpisode {
     id: number;
     title: string;
     link: string;
     description: string;
+    duration: number;
+    chaptersUrl: string | null;
     guid: string;
     datePublished: number;
     datePublishedPretty: string;
@@ -91,17 +187,20 @@ export namespace ApiResponse {
     enclosureType: string;
     enclosureLength: number;
     explicit: number;
-    episode: number;
-    episodeType: string;
+    episode: number | null;
+    episodeType: string | null;
     season: number;
     /** URL to episode image */
     image: string;
-    feedItunesId: number;
+    feedItunesId: number | null;
     /** URL to feed image */
     feedImage: string;
     feedId: number;
     feedTitle: string;
     feedLanguage: string;
+    transcriptUrl: string | null;
+    soundbite?: ApiResponse.SoundbiteDefinition;
+    soundbites?: Array<ApiResponse.SoundbiteDefinition>;
   }
 
   export interface RandomPodcastEpisode {
@@ -117,18 +216,21 @@ export namespace ApiResponse {
     enclosureType: string;
     enclosureLength: number;
     explicit: number;
-    episode: number;
-    episodeType: string;
+    episode: number | null;
+    episodeType: string | null;
     season: number;
     /** URL to episode image */
     image: string;
-    feedItunesId: number;
+    feedItunesId: number | null;
     /** URL to feed image */
     feedImage: string;
     feedId: number;
     feedTitle: string;
     feedLanguage: string;
-    categories: Record<string, string>;
+    chaptersUrl: string | null;
+    categories: {
+      [k: string]: string;
+    } | null;
   }
 
   export interface EpisodeInfo {
@@ -138,21 +240,57 @@ export namespace ApiResponse {
     description: string;
     guid: string;
     datePublished: number;
+    datePublishedPretty: string;
+    dateCrawled: number;
+    /** Duration in minutes */
+    duration: number;
+    enclosureUrl: string;
+    enclosureType: string;
+    enclosureLength: number;
+    explicit: number;
+    episode: number | null;
+    episodeType: string | null;
+    season: number;
+    /** URL to episode image */
+    image: string;
+    feedItunesId: number | null;
+    /** URL to feed image */
+    feedImage: string;
+    feedId: number;
+    feedLanguage: string;
+    chaptersUrl: string | null;
+    transcriptUrl: string | null;
+    soundbite?: ApiResponse.SoundbiteDefinition;
+    soundbites?: Array<ApiResponse.SoundbiteDefinition>;
+  }
+
+  export interface RecentPodcastEpisode {
+    id: number;
+    title: string;
+    link: string;
+    description: string;
+    duration?: number;
+    chaptersUrl?: string;
+    guid: string;
+    datePublished: number;
+    datePublishedPretty: string;
     dateCrawled: number;
     enclosureUrl: string;
     enclosureType: string;
     enclosureLength: number;
     explicit: number;
-    episode: number;
-    episodeType: string;
+    episode: number | null;
+    episodeType: string | null;
     season: number;
     /** URL to episode image */
     image: string;
-    feedItunesId: number;
+    feedItunesId: number | null;
     /** URL to feed image */
     feedImage: string;
     feedId: number;
+    feedTitle: string;
     feedLanguage: string;
+    transcriptUrl?: string;
   }
 
   export interface Search {
@@ -164,33 +302,73 @@ export namespace ApiResponse {
   }
 
   export interface RecentFeeds {
-    since: number;
+    since: number | null;
     status: ApiResponse.Status;
     feeds: Array<ApiResponse.NewPodcastFeed>;
     count: number;
-    max: number;
+    max: string;
     description: string;
   }
 
-  export interface RecentNewFeeds {
+  export interface Soundbite {
+    enclosureUrl: string;
+    title: string;
+    startTime: number;
+    duration: number;
+    episodeId: number;
+    episodeTitle: string;
+    feedTitle: string;
+    feedUrl: string;
+    feedId: number;
+  }
+
+  export interface RecentSoundbites {
     status: ApiResponse.Status;
-    feeds: Array<ApiResponse.SimplePodcastFeed>;
+    items: Array<ApiResponse.Soundbite>;
     count: number;
-    max: number;
+    description: string;
+  }
+
+  export interface RecentNewPodcastFeed {
+    id: number;
+    url: string;
+    timeAdded: number;
+    status: ApiResponse.NewFeedStatus;
+    contentHash: string;
+    language: string;
+  }
+
+  export interface RecentNewFeeds {
+    status: ApiResponse.NewFeedStatus;
+    feeds: Array<ApiResponse.RecentNewPodcastFeed>;
+    count: number;
+    max: string;
     description: string;
   }
 
   export interface RecentEpisodes {
     status: ApiResponse.Status;
-    items: Array<ApiResponse.PodcastEpisode>;
+    items: Array<ApiResponse.RecentPodcastEpisode>;
     count: number;
-    max: number;
+    max: string;
     description: string;
   }
 
   export interface Podcast {
     status: ApiResponse.Status;
-    feed: ApiResponse.PodcastFeed;
+    feed: ApiResponse.PodcastFeed & {
+      chash?: string;
+      value?: {
+        model: { type: string; method: string; suggested: string };
+        destinations: Array<{
+          name: string;
+          address: string;
+          type: string;
+          split: number;
+        }>;
+      } | null;
+      funding?: { url: string; message: string };
+    };
     description: string;
     query: {
       url?: string;
@@ -223,7 +401,7 @@ export namespace ApiResponse {
 
   export interface RandomEpisodes {
     status: ApiResponse.Status;
-    max: number;
+    max: string;
     episodes: Array<ApiResponse.RandomPodcastEpisode>;
     count: number;
     description: string;

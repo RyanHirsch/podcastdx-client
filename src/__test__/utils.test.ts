@@ -17,5 +17,10 @@ describe("utilities", () => {
       const date = new Date(epoch * 1000);
       expect(toEpochTimestamp(date.getTime())).toEqual(epoch);
     });
+
+    it("leaves relative time (negative) alone", () => {
+      const aSecondAgo = -1;
+      expect(toEpochTimestamp(aSecondAgo)).toEqual(aSecondAgo);
+    });
   });
 });
