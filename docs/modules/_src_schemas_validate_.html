@@ -111,7 +111,7 @@
 					<div class="tsd-signature tsd-kind-icon">Validation<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>endpoint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>getResponse<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>title<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>typeName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L36">src/schemas/validate.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L36">src/schemas/validate.ts:36</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -156,7 +156,7 @@
 					<div class="tsd-signature tsd-kind-icon">ajv<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Ajv</span><span class="tsd-signature-symbol"> = new Ajv()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L188">src/schemas/validate.ts:188</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L188">src/schemas/validate.ts:188</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -166,7 +166,7 @@
 					<div class="tsd-signature tsd-kind-icon">client<span class="tsd-signature-symbol">:</span> <a href="../classes/_src_index_.podcastindexclient.html" class="tsd-signature-type">PodcastIndexClient</a><span class="tsd-signature-symbol"> = new PodcastIndexClient()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L12">src/schemas/validate.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L12">src/schemas/validate.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -176,7 +176,7 @@
 					<div class="tsd-signature tsd-kind-icon">program<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Program</span><span class="tsd-signature-symbol"> = TJS.getProgramFromFiles([path.resolve(&quot;src/types.ts&quot;)], {strict: true,})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L185">src/schemas/validate.ts:185</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L185">src/schemas/validate.ts:185</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -186,7 +186,7 @@
 					<div class="tsd-signature tsd-kind-icon">types<span class="tsd-signature-symbol">:</span> <a href="_src_schemas_validate_.html#validationconfig" class="tsd-signature-type">ValidationConfig</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [{getResponse: () &#x3D;&gt; client.categories(),endpoint: &quot;/api/1.0/categories/list&quot;,title: &quot;Get all category names and ids&quot;,typeName: &quot;ApiResponse.Categories&quot;,},// #region Searching{getResponse: () &#x3D;&gt; client.search(getRandom(&quot;search&quot;)),endpoint: &quot;/api/1.0/search/byterm&quot;,params: {q: &quot;search terms&quot;,},title:&quot;This call returns all of the feeds that match the search terms in the title of the feed.&quot;,typeName: &quot;ApiResponse.Search&quot;,},// #endregion// #region Podcasts{getResponse: () &#x3D;&gt; client.podcastByUrl(getRandom(&quot;feedUrl&quot;)),endpoint: &quot;/api/1.0/podcasts/byfeedurl&quot;,params: {url: &quot;feed url&quot;,},title: &quot;This call returns everything we know about the feed.&quot;,typeName: &quot;ApiResponse.Podcast&quot;,},{getResponse: () &#x3D;&gt; client.podcastById(parseInt(getRandom(&quot;feedId&quot;), 10)),endpoint: &quot;/api/1.0/podcasts/byfeedid&quot;,params: {id: &quot;feed id&quot;,},title: &quot;This call returns everything we know about the feed.&quot;,typeName: &quot;ApiResponse.Podcast&quot;,},{getResponse: () &#x3D;&gt; client.podcastByItunesId(parseInt(getRandom(&quot;iTunesId&quot;), 10)),endpoint: &quot;/api/1.0/podcasts/byitunesid&quot;,params: {id: &quot;iTunes id&quot;,},title: &quot;This call returns everything we know about the feed.&quot;,typeName: &quot;ApiResponse.Podcast&quot;,},// #endregion// #region Episodes{getResponse: () &#x3D;&gt; client.episodesByFeedId(parseInt(getRandom(&quot;feedId&quot;), 10)),endpoint: &quot;/api/1.0/episodes/byfeedurl&quot;,params: {id: &quot;feed id&quot;,},title:&quot;This call returns all the episodes we know about for this feed, in reverse chronological order.&quot;,typeName: &quot;ApiResponse.Episodes&quot;,},{getResponse: () &#x3D;&gt; client.episodesByFeedUrl(getRandom(&quot;feedUrl&quot;)),endpoint: &quot;/api/1.0/episodes/byfeedid&quot;,title:&quot;This call returns all the episodes we know about for this feed, in reverse chronological order&quot;,params: {url: &quot;feed url&quot;,},typeName: &quot;ApiResponse.Episodes&quot;,},{getResponse: () &#x3D;&gt; client.episodesByItunesId(parseInt(getRandom(&quot;iTunesId&quot;), 10)),endpoint: &quot;/api/1.0/episodes/byitunesid&quot;,params: {id: &quot;iTunes id&quot;,},title:&quot;If we have an itunes id on file for a feed, then this call returns all the episodes we know about for the feed, in reverse chronological order.&quot;,typeName: &quot;ApiResponse.Episodes&quot;,},{getResponse: () &#x3D;&gt; client.episodeById(parseInt(getRandom(&quot;episodeId&quot;), 10)),endpoint: &quot;/api/1.0/episodes/byid&quot;,params: {id: &quot;episode id&quot;,},title: &quot;Get all the metadata for a single episode by passing its id.&quot;,typeName: &quot;ApiResponse.EpisodeById&quot;,},{getResponse: () &#x3D;&gt; client.episodesRandom({ max: 10 }),endpoint: &quot;/api/1.0/episodes/random&quot;,params: {max: &quot;number&quot;,},title: &quot;This call returns a random batch of [max] episodes, in no specific order.&quot;,typeName: &quot;ApiResponse.RandomEpisodes&quot;,},// #endregion// #region Recent{getResponse: () &#x3D;&gt; client.recentEpisodes({ max: Math.floor(Math.random() * 500) }),endpoint: &quot;/api/1.0/recent/episodes&quot;,params: {max: &quot;max number items to return&quot;,},title:&quot;This call returns the most recent [max] number of episodes globally across the whole index, in reverse chronological order.&quot;,typeName: &quot;ApiResponse.RecentEpisodes&quot;,},{getResponse: () &#x3D;&gt; client.recentFeeds({ max: 3 }),endpoint: &quot;/api/1.0/recent/feeds&quot;,params: {max: &quot;max number items to return&quot;,},title: &quot;This call returns the most recent [max] feeds, in reverse chronological order.&quot;,typeName: &quot;ApiResponse.RecentFeeds&quot;,},{getResponse: () &#x3D;&gt; client.recentNewFeeds(),endpoint: &quot;/api/1.0/recent/newfeeds&quot;,title:&quot;This call returns every new feed added to the index over the past 24 hours in reverse chronological order.&quot;,typeName: &quot;ApiResponse.RecentNewFeeds&quot;,},{getResponse: () &#x3D;&gt; client.recentSoundbites(),endpoint: &quot;/api/1.0/recent/soundbites&quot;,title:&quot;This call returns the most recent 60 soundbites that the index has discovered. A soundbite consists of an enclosure url, a start time and a duration.&quot;,typeName: &quot;ApiResponse.RecentSoundbites&quot;,},// #endregion]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L45">src/schemas/validate.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L45">src/schemas/validate.ts:45</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -203,7 +203,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L30">src/schemas/validate.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L30">src/schemas/validate.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -232,7 +232,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L190">src/schemas/validate.ts:190</a></li>
+									<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L190">src/schemas/validate.ts:190</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -255,7 +255,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L200">src/schemas/validate.ts:200</a></li>
+									<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L200">src/schemas/validate.ts:200</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -306,7 +306,7 @@
 					<div class="tsd-signature tsd-kind-icon">random<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L14">src/schemas/validate.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L14">src/schemas/validate.ts:14</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -315,7 +315,7 @@
 						<div class="tsd-signature tsd-kind-icon">episode<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [&quot;1259601251&quot;, &quot;1258727571&quot;, &quot;1204436090&quot;, &quot;1258177517&quot;, &quot;1258243519&quot;, &quot;1258315764&quot;]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L27">src/schemas/validate.ts:27</a></li>
+								<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L27">src/schemas/validate.ts:27</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -325,7 +325,7 @@
 						<div class="tsd-signature tsd-kind-icon">feed<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [&quot;286504&quot;, &quot;555343&quot;, &quot;854465&quot;, &quot;75075&quot;, &quot;453550&quot;, &quot;448732&quot;, &quot;710181&quot;]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L25">src/schemas/validate.ts:25</a></li>
+								<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L25">src/schemas/validate.ts:25</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -335,7 +335,7 @@
 						<div class="tsd-signature tsd-kind-icon">feed<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [&quot;https://feeds.theincomparable.com/batmanuniversity&quot;,&quot;https://feeds.twit.tv/twit.xml&quot;,&quot;https://feeds.buzzsprout.com/217882.rss&quot;,&quot;http://mp3s.nashownotes.com/pc20rss.xml&quot;,&quot;https://feeds.podcasts.dell.com/technologypowersx&quot;,&quot;https://feeds.buzzsprout.com/926059.rss&quot;,&quot;https://feeds.buzzsprout.com/1152806.rss&quot;,]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L16">src/schemas/validate.ts:16</a></li>
+								<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L16">src/schemas/validate.ts:16</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -345,7 +345,7 @@
 						<div class="tsd-signature tsd-kind-icon">i<wbr>Tunes<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [&quot;1439743528&quot;, &quot;1491697526&quot;, &quot;1508189931&quot;, &quot;977386811&quot;, &quot;1518105204&quot;]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L26">src/schemas/validate.ts:26</a></li>
+								<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L26">src/schemas/validate.ts:26</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -355,7 +355,7 @@
 						<div class="tsd-signature tsd-kind-icon">search<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = [&quot;politics&quot;, &quot;tech&quot;]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L15">src/schemas/validate.ts:15</a></li>
+								<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L15">src/schemas/validate.ts:15</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -366,7 +366,7 @@
 					<div class="tsd-signature tsd-kind-icon">settings<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L180">src/schemas/validate.ts:180</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L180">src/schemas/validate.ts:180</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
@@ -375,7 +375,7 @@
 						<div class="tsd-signature tsd-kind-icon">no<wbr>Extra<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> = true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L182">src/schemas/validate.ts:182</a></li>
+								<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L182">src/schemas/validate.ts:182</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -385,7 +385,7 @@
 						<div class="tsd-signature tsd-kind-icon">required<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> = true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/schemas/validate.ts#L181">src/schemas/validate.ts:181</a></li>
+								<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/73af336/src/schemas/validate.ts#L181">src/schemas/validate.ts:181</a></li>
 							</ul>
 						</aside>
 					</section>
