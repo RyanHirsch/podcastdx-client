@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PodcastBase | podcastdx-client</title>
+	<title>PIApiFeedBase | podcastdx-client</title>
 	<meta name="description" content="Documentation for podcastdx-client">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -59,10 +59,10 @@
 					<a href="../modules/_src_types_.html">&quot;src/types&quot;</a>
 				</li>
 				<li>
-					<a href="_src_types_.podcastbase.html">PodcastBase</a>
+					<a href="_src_types_.piapifeedbase.html">PIApiFeedBase</a>
 				</li>
 			</ul>
-			<h1>Interface PodcastBase</h1>
+			<h1>Interface PIApiFeedBase</h1>
 		</div>
 	</div>
 </header>
@@ -73,13 +73,13 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">PodcastBase</span>
+						<span class="target">PIApiFeedBase</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="_src_types_.apiresponse.newpodcastfeed.html" class="tsd-signature-type">NewPodcastFeed</a>
+								<a href="_src_types_.piapifeed.html" class="tsd-signature-type">PIApiFeed</a>
 							</li>
 							<li>
-								<a href="_src_types_.apiresponse.podcastfeed.html" class="tsd-signature-type">PodcastFeed</a>
+								<a href="_src_types_.piapinewfeed.html" class="tsd-signature-type">PIApiNewFeed</a>
 							</li>
 						</ul>
 					</li>
@@ -92,12 +92,12 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_src_types_.podcastbase.html#categories" class="tsd-kind-icon">categories</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_src_types_.podcastbase.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_src_types_.podcastbase.html#itunesid" class="tsd-kind-icon">itunes<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_src_types_.podcastbase.html#language" class="tsd-kind-icon">language</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_src_types_.podcastbase.html#title" class="tsd-kind-icon">title</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_src_types_.podcastbase.html#url" class="tsd-kind-icon">url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_src_types_.piapifeedbase.html#categories" class="tsd-kind-icon">categories</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_src_types_.piapifeedbase.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_src_types_.piapifeedbase.html#itunesid" class="tsd-kind-icon">itunes<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_src_types_.piapifeedbase.html#language" class="tsd-kind-icon">language</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_src_types_.piapifeedbase.html#title" class="tsd-kind-icon">title</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_src_types_.piapifeedbase.html#url" class="tsd-kind-icon">url</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,10 +108,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="categories" class="tsd-anchor"></a>
 					<h3>categories</h3>
-					<div class="tsd-signature tsd-kind-icon">categories<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">categories<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/eb84aff/src/types.ts#L13">src/types.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/types.ts#L82">src/types.ts:82</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -126,7 +126,7 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/eb84aff/src/types.ts#L3">src/types.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/types.ts#L72">src/types.ts:72</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -138,15 +138,15 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="itunesid" class="tsd-anchor"></a>
 					<h3>itunes<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">itunes<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<div class="tsd-signature tsd-kind-icon">itunes<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/eb84aff/src/types.ts#L9">src/types.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/types.ts#L78">src/types.ts:78</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The itunes id of this feed if there is one, and we know what it is.</p>
+							<p>The iTunes id of this feed if there is one, and we know what it is.</p>
 						</div>
 					</div>
 				</section>
@@ -156,7 +156,7 @@
 					<div class="tsd-signature tsd-kind-icon">language<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/eb84aff/src/types.ts#L11">src/types.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/types.ts#L80">src/types.ts:80</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -171,7 +171,7 @@
 					<div class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/eb84aff/src/types.ts#L5">src/types.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/types.ts#L74">src/types.ts:74</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -186,7 +186,7 @@
 					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/eb84aff/src/types.ts#L7">src/types.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/types.ts#L76">src/types.ts:76</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -204,13 +204,13 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/_src___test___utils_.html">&quot;src/__test__/utils&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
 						<a href="../modules/_src_analytics_.html">&quot;src/analytics&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/_src_index_.html">&quot;src/index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_src_schemas_validate_.html">&quot;src/schemas/validate&quot;</a>
 					</li>
 					<li class="current tsd-kind-module">
 						<a href="../modules/_src_types_.html">&quot;src/types&quot;</a>
@@ -225,33 +225,66 @@
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="../enums/_src_types_.podcastfeedtype.html" class="tsd-kind-icon">Podcast<wbr>Feed<wbr>Type</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_src_types_.piapicategory.html" class="tsd-kind-icon">PIApi<wbr>Category</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
+						<a href="_src_types_.piapiepisodebase.html" class="tsd-kind-icon">PIApi<wbr>Episode<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_src_types_.piapiepisodedetail.html" class="tsd-kind-icon">PIApi<wbr>Episode<wbr>Detail</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_src_types_.piapiepisodeinfo.html" class="tsd-kind-icon">PIApi<wbr>Episode<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_src_types_.piapifeed.html" class="tsd-kind-icon">PIApi<wbr>Feed</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="_src_types_.podcastbase.html" class="tsd-kind-icon">Podcast<wbr>Base</a>
+						<a href="_src_types_.piapifeedbase.html" class="tsd-kind-icon">PIApi<wbr>Feed<wbr>Base</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_src_types_.podcastbase.html#categories" class="tsd-kind-icon">categories</a>
+								<a href="_src_types_.piapifeedbase.html#categories" class="tsd-kind-icon">categories</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_src_types_.podcastbase.html#id" class="tsd-kind-icon">id</a>
+								<a href="_src_types_.piapifeedbase.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_src_types_.podcastbase.html#itunesid" class="tsd-kind-icon">itunes<wbr>Id</a>
+								<a href="_src_types_.piapifeedbase.html#itunesid" class="tsd-kind-icon">itunes<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_src_types_.podcastbase.html#language" class="tsd-kind-icon">language</a>
+								<a href="_src_types_.piapifeedbase.html#language" class="tsd-kind-icon">language</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_src_types_.podcastbase.html#title" class="tsd-kind-icon">title</a>
+								<a href="_src_types_.piapifeedbase.html#title" class="tsd-kind-icon">title</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_src_types_.podcastbase.html#url" class="tsd-kind-icon">url</a>
+								<a href="_src_types_.piapifeedbase.html#url" class="tsd-kind-icon">url</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_src_types_.piapinewfeed.html" class="tsd-kind-icon">PIApi<wbr>New<wbr>Feed</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_src_types_.piapipodcast.html" class="tsd-kind-icon">PIApi<wbr>Podcast</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_src_types_.piapirandomepisode.html" class="tsd-kind-icon">PIApi<wbr>Random<wbr>Episode</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_src_types_.piapirecentepisode.html" class="tsd-kind-icon">PIApi<wbr>Recent<wbr>Episode</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_src_types_.piapirecentnewfeed.html" class="tsd-kind-icon">PIApi<wbr>Recent<wbr>New<wbr>Feed</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_src_types_.piapisoundbite.html" class="tsd-kind-icon">Pi<wbr>Api<wbr>Soundbite</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -263,9 +296,11 @@
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
 				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Status | podcastdx-client</title>
+	<title>NewFeedStatus | podcastdx-client</title>
 	<meta name="description" content="Documentation for podcastdx-client">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -62,10 +62,10 @@
 					<a href="../modules/_src_types_.apiresponse.html">ApiResponse</a>
 				</li>
 				<li>
-					<a href="_src_types_.apiresponse.status.html">Status</a>
+					<a href="_src_types_.apiresponse.newfeedstatus.html">NewFeedStatus</a>
 				</li>
 			</ul>
-			<h1>Enumeration Status</h1>
+			<h1>Enumeration NewFeedStatus</h1>
 		</div>
 	</div>
 </header>
@@ -79,7 +79,9 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_src_types_.apiresponse.status.html#success" class="tsd-kind-icon">Success</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_src_types_.apiresponse.newfeedstatus.html#confirmed" class="tsd-kind-icon">Confirmed</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_src_types_.apiresponse.newfeedstatus.html#pending" class="tsd-kind-icon">Pending</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_src_types_.apiresponse.newfeedstatus.html#success" class="tsd-kind-icon">Success</a></li>
 							</ul>
 						</section>
 					</div>
@@ -88,12 +90,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="confirmed" class="tsd-anchor"></a>
+					<h3>Confirmed</h3>
+					<div class="tsd-signature tsd-kind-icon">Confirmed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;confirmed&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/types.ts#L180">src/types.ts:180</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="pending" class="tsd-anchor"></a>
+					<h3>Pending</h3>
+					<div class="tsd-signature tsd-kind-icon">Pending<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;pending&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/types.ts#L182">src/types.ts:182</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="success" class="tsd-anchor"></a>
 					<h3>Success</h3>
 					<div class="tsd-signature tsd-kind-icon">Success<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;true&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/types.ts#L176">src/types.ts:176</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/types.ts#L181">src/types.ts:181</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -109,21 +131,27 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum tsd-parent-kind-namespace">
-						<a href="_src_types_.apiresponse.newfeedstatus.html" class="tsd-kind-icon">New<wbr>Feed<wbr>Status</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-enum tsd-parent-kind-namespace">
-						<a href="_src_types_.apiresponse.status.html" class="tsd-kind-icon">Status</a>
+						<a href="_src_types_.apiresponse.newfeedstatus.html" class="tsd-kind-icon">New<wbr>Feed<wbr>Status</a>
 						<ul>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="_src_types_.apiresponse.status.html#success" class="tsd-kind-icon">Success</a>
+								<a href="_src_types_.apiresponse.newfeedstatus.html#confirmed" class="tsd-kind-icon">Confirmed</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="_src_types_.apiresponse.newfeedstatus.html#pending" class="tsd-kind-icon">Pending</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="_src_types_.apiresponse.newfeedstatus.html#success" class="tsd-kind-icon">Success</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-enum tsd-parent-kind-namespace">
+						<a href="_src_types_.apiresponse.status.html" class="tsd-kind-icon">Status</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="../interfaces/_src_types_.apiresponse.categories.html" class="tsd-kind-icon">Categories</a>
 					</li>

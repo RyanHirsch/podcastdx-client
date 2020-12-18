@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SimplePodcastFeed | podcastdx-client</title>
+	<title>RecentSoundbites | podcastdx-client</title>
 	<meta name="description" content="Documentation for podcastdx-client">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -62,10 +62,10 @@
 					<a href="../modules/_src_types_.apiresponse.html">ApiResponse</a>
 				</li>
 				<li>
-					<a href="_src_types_.apiresponse.simplepodcastfeed.html">SimplePodcastFeed</a>
+					<a href="_src_types_.apiresponse.recentsoundbites.html">RecentSoundbites</a>
 				</li>
 			</ul>
-			<h1>Interface SimplePodcastFeed</h1>
+			<h1>Interface RecentSoundbites</h1>
 		</div>
 	</div>
 </header>
@@ -76,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">SimplePodcastFeed</span>
+						<span class="target">RecentSoundbites</span>
 					</li>
 				</ul>
 			</section>
@@ -87,11 +87,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.simplepodcastfeed.html#contenthash" class="tsd-kind-icon">content<wbr>Hash</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.simplepodcastfeed.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.simplepodcastfeed.html#status" class="tsd-kind-icon">status</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.simplepodcastfeed.html#timeadded" class="tsd-kind-icon">time<wbr>Added</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.simplepodcastfeed.html#url" class="tsd-kind-icon">url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.recentsoundbites.html#count" class="tsd-kind-icon">count</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.recentsoundbites.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.recentsoundbites.html#items" class="tsd-kind-icon">items</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.recentsoundbites.html#status" class="tsd-kind-icon">status</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,22 +99,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="contenthash" class="tsd-anchor"></a>
-					<h3>content<wbr>Hash</h3>
-					<div class="tsd-signature tsd-kind-icon">content<wbr>Hash<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="count" class="tsd-anchor"></a>
+					<h3>count</h3>
+					<div class="tsd-signature tsd-kind-icon">count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/eb84aff/src/types.ts#L78">src/types.ts:78</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/types.ts#L210">src/types.ts:210</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="id" class="tsd-anchor"></a>
-					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="description" class="tsd-anchor"></a>
+					<h3>description</h3>
+					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/eb84aff/src/types.ts#L74">src/types.ts:74</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/types.ts#L211">src/types.ts:211</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="items" class="tsd-anchor"></a>
+					<h3>items</h3>
+					<div class="tsd-signature tsd-kind-icon">items<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_types_.piapisoundbite.html" class="tsd-signature-type">PiApiSoundbite</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/types.ts#L209">src/types.ts:209</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -125,27 +134,7 @@
 					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <a href="../enums/_src_types_.apiresponse.status.html" class="tsd-signature-type">Status</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/eb84aff/src/types.ts#L77">src/types.ts:77</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="timeadded" class="tsd-anchor"></a>
-					<h3>time<wbr>Added</h3>
-					<div class="tsd-signature tsd-kind-icon">time<wbr>Added<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/eb84aff/src/types.ts#L76">src/types.ts:76</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="url" class="tsd-anchor"></a>
-					<h3>url</h3>
-					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/eb84aff/src/types.ts#L75">src/types.ts:75</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/19cde3a/src/types.ts#L208">src/types.ts:208</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -162,40 +151,25 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-enum tsd-parent-kind-namespace">
+						<a href="../enums/_src_types_.apiresponse.newfeedstatus.html" class="tsd-kind-icon">New<wbr>Feed<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-namespace">
 						<a href="../enums/_src_types_.apiresponse.status.html" class="tsd-kind-icon">Status</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="_src_types_.apiresponse.categories.html" class="tsd-kind-icon">Categories</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="_src_types_.apiresponse.category.html" class="tsd-kind-icon">Category</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="_src_types_.apiresponse.episodebyid.html" class="tsd-kind-icon">Episode<wbr>ById</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="_src_types_.apiresponse.episodeinfo.html" class="tsd-kind-icon">Episode<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="_src_types_.apiresponse.episodes.html" class="tsd-kind-icon">Episodes</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="_src_types_.apiresponse.newpodcastfeed.html" class="tsd-kind-icon">New<wbr>Podcast<wbr>Feed</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="_src_types_.apiresponse.podcast.html" class="tsd-kind-icon">Podcast</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="_src_types_.apiresponse.podcastepisode.html" class="tsd-kind-icon">Podcast<wbr>Episode</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="_src_types_.apiresponse.podcastfeed.html" class="tsd-kind-icon">Podcast<wbr>Feed</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="_src_types_.apiresponse.randomepisodes.html" class="tsd-kind-icon">Random<wbr>Episodes</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="_src_types_.apiresponse.randompodcastepisode.html" class="tsd-kind-icon">Random<wbr>Podcast<wbr>Episode</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="_src_types_.apiresponse.recentepisodes.html" class="tsd-kind-icon">Recent<wbr>Episodes</a>
@@ -206,33 +180,30 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="_src_types_.apiresponse.recentnewfeeds.html" class="tsd-kind-icon">Recent<wbr>New<wbr>Feeds</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="_src_types_.apiresponse.search.html" class="tsd-kind-icon">Search</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="_src_types_.apiresponse.simplepodcastfeed.html" class="tsd-kind-icon">Simple<wbr>Podcast<wbr>Feed</a>
+						<a href="_src_types_.apiresponse.recentsoundbites.html" class="tsd-kind-icon">Recent<wbr>Soundbites</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.apiresponse.simplepodcastfeed.html#contenthash" class="tsd-kind-icon">content<wbr>Hash</a>
+								<a href="_src_types_.apiresponse.recentsoundbites.html#count" class="tsd-kind-icon">count</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.apiresponse.simplepodcastfeed.html#id" class="tsd-kind-icon">id</a>
+								<a href="_src_types_.apiresponse.recentsoundbites.html#description" class="tsd-kind-icon">description</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.apiresponse.simplepodcastfeed.html#status" class="tsd-kind-icon">status</a>
+								<a href="_src_types_.apiresponse.recentsoundbites.html#items" class="tsd-kind-icon">items</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.apiresponse.simplepodcastfeed.html#timeadded" class="tsd-kind-icon">time<wbr>Added</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.apiresponse.simplepodcastfeed.html#url" class="tsd-kind-icon">url</a>
+								<a href="_src_types_.apiresponse.recentsoundbites.html#status" class="tsd-kind-icon">status</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="_src_types_.apiresponse.search.html" class="tsd-kind-icon">Search</a>
+					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
 						<a href="../modules/_src_types_.apiresponse.html#anyqueryoptions" class="tsd-kind-icon">Any<wbr>Query<wbr>Options</a>
 					</li>
@@ -265,9 +236,11 @@
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
 				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
