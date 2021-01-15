@@ -1,6 +1,5 @@
 {
   "title": "`/api/1.0/podcasts/byitunesid` - This call returns everything we know about the feed.",
-  "description": "Not directly returned by any api",
   "type": "object",
   "properties": {
     "status": {
@@ -10,7 +9,7 @@
       ]
     },
     "feed": {
-      "$ref": "#/definitions/PIApiPodcast"
+      "$ref": "#/definitions/PIApiItunesPodcast"
     },
     "description": {
       "type": "string"
@@ -36,77 +35,10 @@
     "status"
   ],
   "definitions": {
-    "PIApiPodcast": {
-      "description": "Returned by podcastBy*",
+    "PIApiItunesPodcast": {
+      "description": "Returned by podcastByItunesId, internally this has a different code path than\nthe other podcastBy* so the result is less feature rich",
       "type": "object",
       "properties": {
-        "chash": {
-          "type": "string"
-        },
-        "value": {
-          "anyOf": [
-            {
-              "type": "object",
-              "properties": {
-                "model": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string"
-                    },
-                    "method": {
-                      "type": "string"
-                    },
-                    "suggested": {
-                      "type": "string"
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": [
-                    "method",
-                    "suggested",
-                    "type"
-                  ]
-                },
-                "destinations": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "address": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "split": {
-                        "type": "number"
-                      }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                      "address",
-                      "name",
-                      "split",
-                      "type"
-                    ]
-                  }
-                }
-              },
-              "additionalProperties": false,
-              "required": [
-                "destinations",
-                "model"
-              ]
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
         "funding": {
           "type": "object",
           "properties": {

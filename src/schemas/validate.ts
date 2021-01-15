@@ -49,6 +49,12 @@ const types: ValidationConfig[] = [
     title: "Get all category names and ids",
     typeName: "ApiResponse.Categories",
   },
+  {
+    getResponse: () => client.stats(),
+    endpoint: "/api/1.0/stats/current",
+    title: "Get podcast index stats",
+    typeName: "ApiResponse.Stats",
+  },
   // #region Searching
   {
     getResponse: () => client.search(getRandom("search")),
@@ -69,7 +75,7 @@ const types: ValidationConfig[] = [
       url: "feed url",
     },
     title: "This call returns everything we know about the feed.",
-    typeName: "ApiResponse.Podcast",
+    typeName: "ApiResponse.PodcastByUrl",
   },
   {
     getResponse: () => client.podcastById(parseInt(getRandom("feedId"), 10)),
@@ -78,7 +84,7 @@ const types: ValidationConfig[] = [
       id: "feed id",
     },
     title: "This call returns everything we know about the feed.",
-    typeName: "ApiResponse.Podcast",
+    typeName: "ApiResponse.PodcastById",
   },
   {
     getResponse: () => client.podcastByItunesId(parseInt(getRandom("iTunesId"), 10)),
@@ -87,7 +93,7 @@ const types: ValidationConfig[] = [
       id: "iTunes id",
     },
     title: "This call returns everything we know about the feed.",
-    typeName: "ApiResponse.Podcast",
+    typeName: "ApiResponse.PodcastByItunesId",
   },
   // #endregion
   // #region Episodes

@@ -6,6 +6,8 @@ This includes typescript types as well as JSDoc strings that should make interac
 
 Optionally provide usage analytics back to me to help me improve the library. **If you do not provide this value, analytics will not be sent. It provides privacy by default.**
 
+JSON Schema generated from the types contained in the project can be found at <https://github.com/RyanHirsch/podcastdx-client/tree/master/src/schemas>
+
 ## Installation
 
 ```sh

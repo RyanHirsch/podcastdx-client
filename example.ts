@@ -21,9 +21,11 @@ const client = new PodcastIndexClient({
   // console.log(await client.categories());
 
   // const episodes = await client.episodesByFeedUrl("https://feeds.buzzsprout.com/217882.rss");
-  const podcast = await client.episodesByFeedUrl("http://feeds.feedburner.com/FreeSexPodcast");
+  // const podcast = await client.episodesByFeedUrl("http://feeds.feedburner.com/FreeSexPodcast");
   // console.log(JSON.stringify(feeds));
-  console.log(podcast.items);
+  // console.log(podcast.items);
+
+  console.log(JSON.stringify(await client.stats(), null, 2));
 })();
 
 // 39633 categories

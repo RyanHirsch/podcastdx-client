@@ -40,6 +40,9 @@
       "description": "Returned by podcastBy*",
       "type": "object",
       "properties": {
+        "episodeCount": {
+          "type": "number"
+        },
         "chash": {
           "type": "string"
         },
@@ -247,10 +250,12 @@
         "artwork",
         "author",
         "categories",
+        "chash",
         "contentType",
         "crawlErrors",
         "dead",
         "description",
+        "episodeCount",
         "generator",
         "id",
         "image",
@@ -267,7 +272,8 @@
         "parseErrors",
         "title",
         "type",
-        "url"
+        "url",
+        "value"
       ]
     },
     "PodcastFeedType": {

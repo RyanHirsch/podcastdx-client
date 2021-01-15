@@ -368,4 +368,8 @@ export default class PodcastIndexClient {
     return this.fetch("/episodes/byid", { id });
   }
   // #endregion
+
+  public stats(): Promise<ApiResponse.Stats> {
+    return this.fetch("/stats/current");
+  }
 }

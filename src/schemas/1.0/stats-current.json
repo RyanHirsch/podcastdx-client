@@ -1,0 +1,60 @@
+{
+  "title": "`/api/1.0/stats/current` - Get podcast index stats",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "true"
+      ]
+    },
+    "stats": {
+      "$ref": "#/definitions/PIStats"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "description",
+    "stats",
+    "status"
+  ],
+  "definitions": {
+    "PIStats": {
+      "description": "from stats",
+      "type": "object",
+      "properties": {
+        "feedCountTotal": {
+          "type": "string"
+        },
+        "episodeCountTotal": {
+          "type": "string"
+        },
+        "feedsWithNewEpisodes3days": {
+          "type": "string"
+        },
+        "feedsWithNewEpisodes10days": {
+          "type": "string"
+        },
+        "feedsWithNewEpisodes30days": {
+          "type": "string"
+        },
+        "feedsWithNewEpisodes90days": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "episodeCountTotal",
+        "feedCountTotal",
+        "feedsWithNewEpisodes10days",
+        "feedsWithNewEpisodes30days",
+        "feedsWithNewEpisodes3days",
+        "feedsWithNewEpisodes90days"
+      ]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

@@ -128,8 +128,9 @@ export interface PIApiFeed extends PIApiFeedBase {
 
 /** Returned by podcastBy* */
 export interface PIApiPodcast extends PIApiFeed {
-  chash?: string;
-  value?: {
+  episodeCount: number;
+  chash: string;
+  value: {
     model: { type: string; method: string; suggested: string };
     destinations: Array<{
       name: string;
@@ -138,6 +139,14 @@ export interface PIApiPodcast extends PIApiFeed {
       split: number;
     }>;
   } | null;
+  funding?: { url: string; message: string };
+}
+
+/**
+ * Returned by podcastByItunesId, internally this has a different code path than
+ * the other podcastBy* so the result is less feature rich
+ */
+export interface PIApiItunesPodcast extends PIApiFeed {
   funding?: { url: string; message: string };
 }
 
@@ -168,6 +177,16 @@ export interface PIApiRecentNewFeed {
   status: ApiResponse.NewFeedStatus;
   contentHash: string;
   language: string;
+}
+
+/** from stats */
+export interface PIStats {
+  feedCountTotal: string;
+  episodeCountTotal: string;
+  feedsWithNewEpisodes3days: string;
+  feedsWithNewEpisodes10days: string;
+  feedsWithNewEpisodes30days: string;
+  feedsWithNewEpisodes90days: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -239,8 +258,16 @@ export namespace ApiResponse {
   }
 
   export type PodcastById = ApiResponse.Podcast;
-  export type PodcastByItunesId = ApiResponse.Podcast;
   export type PodcastByUrl = ApiResponse.Podcast;
+  export interface PodcastByItunesId {
+    status: ApiResponse.Status;
+    feed: PIApiItunesPodcast;
+    description: string;
+    query: {
+      url?: string;
+      id?: string;
+    };
+  }
 
   export interface Categories {
     status: ApiResponse.Status;
@@ -273,6 +300,12 @@ export namespace ApiResponse {
     status: ApiResponse.Status;
     id: string;
     episode: PIApiEpisodeDetail;
+    description: string;
+  }
+
+  export interface Stats {
+    status: ApiResponse.Status;
+    stats: PIStats;
     description: string;
   }
 }
