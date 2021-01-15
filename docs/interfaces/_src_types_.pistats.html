@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PIApiRecentEpisode | podcastdx-client</title>
+	<title>PIStats | podcastdx-client</title>
 	<meta name="description" content="Documentation for podcastdx-client">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -59,10 +59,10 @@
 					<a href="../modules/_src_types_.html">&quot;src/types&quot;</a>
 				</li>
 				<li>
-					<a href="_src_types_.piapirecentepisode.html">PIApiRecentEpisode</a>
+					<a href="_src_types_.pistats.html">PIStats</a>
 				</li>
 			</ul>
-			<h1>Interface PIApiRecentEpisode</h1>
+			<h1>Interface PIStats</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Returned by recentEpisodes</p>
+						<p>from stats</p>
 					</div>
 				</div>
 			</section>
@@ -80,12 +80,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-symbol">{}</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">PIApiRecentEpisode</span>
-							</li>
-						</ul>
+						<span class="target">PIStats</span>
 					</li>
 				</ul>
 			</section>
@@ -96,7 +91,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.piapirecentepisode.html#feedtitle" class="tsd-kind-icon">feed<wbr>Title</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.pistats.html#episodecounttotal" class="tsd-kind-icon">episode<wbr>Count<wbr>Total</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.pistats.html#feedcounttotal" class="tsd-kind-icon">feed<wbr>Count<wbr>Total</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.pistats.html#feedswithnewepisodes10days" class="tsd-kind-icon">feeds<wbr>With<wbr>New<wbr>Episodes10days</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.pistats.html#feedswithnewepisodes30days" class="tsd-kind-icon">feeds<wbr>With<wbr>New<wbr>Episodes30days</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.pistats.html#feedswithnewepisodes3days" class="tsd-kind-icon">feeds<wbr>With<wbr>New<wbr>Episodes3days</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.pistats.html#feedswithnewepisodes90days" class="tsd-kind-icon">feeds<wbr>With<wbr>New<wbr>Episodes90days</a></li>
 							</ul>
 						</section>
 					</div>
@@ -105,12 +105,62 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="feedtitle" class="tsd-anchor"></a>
-					<h3>feed<wbr>Title</h3>
-					<div class="tsd-signature tsd-kind-icon">feed<wbr>Title<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="episodecounttotal" class="tsd-anchor"></a>
+					<h3>episode<wbr>Count<wbr>Total</h3>
+					<div class="tsd-signature tsd-kind-icon">episode<wbr>Count<wbr>Total<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L67">src/types.ts:67</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L185">src/types.ts:185</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="feedcounttotal" class="tsd-anchor"></a>
+					<h3>feed<wbr>Count<wbr>Total</h3>
+					<div class="tsd-signature tsd-kind-icon">feed<wbr>Count<wbr>Total<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L184">src/types.ts:184</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="feedswithnewepisodes10days" class="tsd-anchor"></a>
+					<h3>feeds<wbr>With<wbr>New<wbr>Episodes10days</h3>
+					<div class="tsd-signature tsd-kind-icon">feeds<wbr>With<wbr>New<wbr>Episodes10days<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L187">src/types.ts:187</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="feedswithnewepisodes30days" class="tsd-anchor"></a>
+					<h3>feeds<wbr>With<wbr>New<wbr>Episodes30days</h3>
+					<div class="tsd-signature tsd-kind-icon">feeds<wbr>With<wbr>New<wbr>Episodes30days<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L188">src/types.ts:188</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="feedswithnewepisodes3days" class="tsd-anchor"></a>
+					<h3>feeds<wbr>With<wbr>New<wbr>Episodes3days</h3>
+					<div class="tsd-signature tsd-kind-icon">feeds<wbr>With<wbr>New<wbr>Episodes3days<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L186">src/types.ts:186</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="feedswithnewepisodes90days" class="tsd-anchor"></a>
+					<h3>feeds<wbr>With<wbr>New<wbr>Episodes90days</h3>
+					<div class="tsd-signature tsd-kind-icon">feeds<wbr>With<wbr>New<wbr>Episodes90days<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L189">src/types.ts:189</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -174,24 +224,39 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="_src_types_.piapirandomepisode.html" class="tsd-kind-icon">PIApi<wbr>Random<wbr>Episode</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_src_types_.piapirecentepisode.html" class="tsd-kind-icon">PIApi<wbr>Recent<wbr>Episode</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_src_types_.piapirecentnewfeed.html" class="tsd-kind-icon">PIApi<wbr>Recent<wbr>New<wbr>Feed</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_src_types_.piapirecentepisode.html" class="tsd-kind-icon">PIApi<wbr>Recent<wbr>Episode</a>
+						<a href="_src_types_.pistats.html" class="tsd-kind-icon">PIStats</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.piapirecentepisode.html#feedtitle" class="tsd-kind-icon">feed<wbr>Title</a>
+								<a href="_src_types_.pistats.html#episodecounttotal" class="tsd-kind-icon">episode<wbr>Count<wbr>Total</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_types_.pistats.html#feedcounttotal" class="tsd-kind-icon">feed<wbr>Count<wbr>Total</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_types_.pistats.html#feedswithnewepisodes10days" class="tsd-kind-icon">feeds<wbr>With<wbr>New<wbr>Episodes10days</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_types_.pistats.html#feedswithnewepisodes30days" class="tsd-kind-icon">feeds<wbr>With<wbr>New<wbr>Episodes30days</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_types_.pistats.html#feedswithnewepisodes3days" class="tsd-kind-icon">feeds<wbr>With<wbr>New<wbr>Episodes3days</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_types_.pistats.html#feedswithnewepisodes90days" class="tsd-kind-icon">feeds<wbr>With<wbr>New<wbr>Episodes90days</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_src_types_.piapirecentnewfeed.html" class="tsd-kind-icon">PIApi<wbr>Recent<wbr>New<wbr>Feed</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_src_types_.pistats.html" class="tsd-kind-icon">PIStats</a>
-					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="_src_types_.piapisoundbite.html" class="tsd-kind-icon">Pi<wbr>Api<wbr>Soundbite</a>
 					</li>

@@ -70,6 +70,7 @@
 				<p>The is a client for interacting with <a href="https://podcastindex.org/">https://podcastindex.org/</a>. In order for this to be useful, you need to get a developer <code>API KEY</code> and <code>API SECRET</code> from <a href="https://api.podcastindex.org">https://api.podcastindex.org</a></p>
 				<p>This includes typescript types as well as JSDoc strings that should make interacting with the API easier.</p>
 				<p>Optionally provide usage analytics back to me to help me improve the library. <strong>If you do not provide this value, analytics will not be sent. It provides privacy by default.</strong></p>
+				<p>JSON Schema generated from the types contained in the project can be found at <a href="https://github.com/RyanHirsch/podcastdx-client/tree/master/src/schemas">https://github.com/RyanHirsch/podcastdx-client/tree/master/src/schemas</a></p>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
@@ -105,8 +106,11 @@ client.episodeById(<span class="hljs-number">16795106</span>).then(<span class="
 					<h2>Releasing a new version</h2>
 				</a>
 				<ol>
-					<li>Ensure you&#39;re fully committed (including <code>package.json</code> change)</li>
-					<li></li>
+					<li>Ensure you&#39;re fully committed<ol>
+							<li>Make sure tests are green schema is correct <code>yarn tsc &amp;&amp; yarn test &amp;&amp; yarn validate</code></li>
+						</ol>
+					</li>
+					<li>Run <code>yarn publish</code></li>
 				</ol>
 			</div>
 		</div>

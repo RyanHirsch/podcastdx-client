@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>RecentFeeds | podcastdx-client</title>
+	<title>PodcastByItunesId | podcastdx-client</title>
 	<meta name="description" content="Documentation for podcastdx-client">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -62,10 +62,10 @@
 					<a href="../modules/_src_types_.apiresponse.html">ApiResponse</a>
 				</li>
 				<li>
-					<a href="_src_types_.apiresponse.recentfeeds.html">RecentFeeds</a>
+					<a href="_src_types_.apiresponse.podcastbyitunesid.html">PodcastByItunesId</a>
 				</li>
 			</ul>
-			<h1>Interface RecentFeeds</h1>
+			<h1>Interface PodcastByItunesId</h1>
 		</div>
 	</div>
 </header>
@@ -76,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">RecentFeeds</span>
+						<span class="target">PodcastByItunesId</span>
 					</li>
 				</ul>
 			</section>
@@ -87,12 +87,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.recentfeeds.html#count" class="tsd-kind-icon">count</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.recentfeeds.html#description" class="tsd-kind-icon">description</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.recentfeeds.html#feeds" class="tsd-kind-icon">feeds</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.recentfeeds.html#max" class="tsd-kind-icon">max</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.recentfeeds.html#since" class="tsd-kind-icon">since</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.recentfeeds.html#status" class="tsd-kind-icon">status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.podcastbyitunesid.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.podcastbyitunesid.html#feed" class="tsd-kind-icon">feed</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.podcastbyitunesid.html#query" class="tsd-kind-icon">query</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.apiresponse.podcastbyitunesid.html#status" class="tsd-kind-icon">status</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,54 +99,45 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="count" class="tsd-anchor"></a>
-					<h3>count</h3>
-					<div class="tsd-signature tsd-kind-icon">count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L221">src/types.ts:221</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="description" class="tsd-anchor"></a>
 					<h3>description</h3>
 					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L223">src/types.ts:223</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L265">src/types.ts:265</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="feeds" class="tsd-anchor"></a>
-					<h3>feeds</h3>
-					<div class="tsd-signature tsd-kind-icon">feeds<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_types_.piapinewfeed.html" class="tsd-signature-type">PIApiNewFeed</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="feed" class="tsd-anchor"></a>
+					<h3>feed</h3>
+					<div class="tsd-signature tsd-kind-icon">feed<span class="tsd-signature-symbol">:</span> <a href="_src_types_.piapiitunespodcast.html" class="tsd-signature-type">PIApiItunesPodcast</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L220">src/types.ts:220</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L264">src/types.ts:264</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="max" class="tsd-anchor"></a>
-					<h3>max</h3>
-					<div class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="query" class="tsd-anchor"></a>
+					<h3>query</h3>
+					<div class="tsd-signature tsd-kind-icon">query<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L222">src/types.ts:222</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L266">src/types.ts:266</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="since" class="tsd-anchor"></a>
-					<h3>since</h3>
-					<div class="tsd-signature tsd-kind-icon">since<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L218">src/types.ts:218</a></li>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+							</li>
 						</ul>
-					</aside>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="status" class="tsd-anchor"></a>
@@ -156,7 +145,7 @@
 					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <a href="../enums/_src_types_.apiresponse.status.html" class="tsd-signature-type">Status</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L219">src/types.ts:219</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L263">src/types.ts:263</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -190,42 +179,36 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="_src_types_.apiresponse.podcast.html" class="tsd-kind-icon">Podcast</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="_src_types_.apiresponse.podcastbyitunesid.html" class="tsd-kind-icon">Podcast<wbr>ByItunes<wbr>Id</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_types_.apiresponse.podcastbyitunesid.html#description" class="tsd-kind-icon">description</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_types_.apiresponse.podcastbyitunesid.html#feed" class="tsd-kind-icon">feed</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_types_.apiresponse.podcastbyitunesid.html#query" class="tsd-kind-icon">query</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_src_types_.apiresponse.podcastbyitunesid.html#status" class="tsd-kind-icon">status</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="_src_types_.apiresponse.randomepisodes.html" class="tsd-kind-icon">Random<wbr>Episodes</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="_src_types_.apiresponse.recentepisodes.html" class="tsd-kind-icon">Recent<wbr>Episodes</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-namespace">
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="_src_types_.apiresponse.recentfeeds.html" class="tsd-kind-icon">Recent<wbr>Feeds</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.apiresponse.recentfeeds.html#count" class="tsd-kind-icon">count</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.apiresponse.recentfeeds.html#description" class="tsd-kind-icon">description</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.apiresponse.recentfeeds.html#feeds" class="tsd-kind-icon">feeds</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.apiresponse.recentfeeds.html#max" class="tsd-kind-icon">max</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.apiresponse.recentfeeds.html#since" class="tsd-kind-icon">since</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.apiresponse.recentfeeds.html#status" class="tsd-kind-icon">status</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
 						<a href="_src_types_.apiresponse.recentnewfeeds.html" class="tsd-kind-icon">Recent<wbr>New<wbr>Feeds</a>
 					</li>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PIApiPodcast | podcastdx-client</title>
+	<title>PIApiItunesPodcast | podcastdx-client</title>
 	<meta name="description" content="Documentation for podcastdx-client">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -59,10 +59,10 @@
 					<a href="../modules/_src_types_.html">&quot;src/types&quot;</a>
 				</li>
 				<li>
-					<a href="_src_types_.piapipodcast.html">PIApiPodcast</a>
+					<a href="_src_types_.piapiitunespodcast.html">PIApiItunesPodcast</a>
 				</li>
 			</ul>
-			<h1>Interface PIApiPodcast</h1>
+			<h1>Interface PIApiItunesPodcast</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Returned by podcastBy*</p>
+						<p>Returned by podcastByItunesId, internally this has a different code path than
+						the other podcastBy* so the result is less feature rich</p>
 					</div>
 				</div>
 			</section>
@@ -83,7 +84,7 @@
 						<a href="_src_types_.piapifeed.html" class="tsd-signature-type">PIApiFeed</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">PIApiPodcast</span>
+								<span class="target">PIApiItunesPodcast</span>
 							</li>
 						</ul>
 					</li>
@@ -96,36 +97,33 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#artwork" class="tsd-kind-icon">artwork</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#author" class="tsd-kind-icon">author</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#categories" class="tsd-kind-icon">categories</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.piapipodcast.html#chash" class="tsd-kind-icon">chash</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#contenttype" class="tsd-kind-icon">content<wbr>Type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#crawlerrors" class="tsd-kind-icon">crawl<wbr>Errors</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#dead" class="tsd-kind-icon">dead</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#description" class="tsd-kind-icon">description</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.piapipodcast.html#episodecount" class="tsd-kind-icon">episode<wbr>Count</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.piapipodcast.html#funding" class="tsd-kind-icon">funding</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#generator" class="tsd-kind-icon">generator</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#image" class="tsd-kind-icon">image</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#imageurlhash" class="tsd-kind-icon">image<wbr>Url<wbr>Hash</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#itunesid" class="tsd-kind-icon">itunes<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#language" class="tsd-kind-icon">language</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#lastcrawltime" class="tsd-kind-icon">last<wbr>Crawl<wbr>Time</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#lastgoodhttpstatustime" class="tsd-kind-icon">last<wbr>Good<wbr>Http<wbr>Status<wbr>Time</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#lasthttpstatus" class="tsd-kind-icon">last<wbr>Http<wbr>Status</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#lastparsetime" class="tsd-kind-icon">last<wbr>Parse<wbr>Time</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#lastupdatetime" class="tsd-kind-icon">last<wbr>Update<wbr>Time</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#link" class="tsd-kind-icon">link</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#locked" class="tsd-kind-icon">locked</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#originalurl" class="tsd-kind-icon">original<wbr>Url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#ownername" class="tsd-kind-icon">owner<wbr>Name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#parseerrors" class="tsd-kind-icon">parse<wbr>Errors</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#title" class="tsd-kind-icon">title</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapipodcast.html#url" class="tsd-kind-icon">url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.piapipodcast.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#artwork" class="tsd-kind-icon">artwork</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#author" class="tsd-kind-icon">author</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#categories" class="tsd-kind-icon">categories</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#contenttype" class="tsd-kind-icon">content<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#crawlerrors" class="tsd-kind-icon">crawl<wbr>Errors</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#dead" class="tsd-kind-icon">dead</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_src_types_.piapiitunespodcast.html#funding" class="tsd-kind-icon">funding</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#generator" class="tsd-kind-icon">generator</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#image" class="tsd-kind-icon">image</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#imageurlhash" class="tsd-kind-icon">image<wbr>Url<wbr>Hash</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#itunesid" class="tsd-kind-icon">itunes<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#language" class="tsd-kind-icon">language</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#lastcrawltime" class="tsd-kind-icon">last<wbr>Crawl<wbr>Time</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#lastgoodhttpstatustime" class="tsd-kind-icon">last<wbr>Good<wbr>Http<wbr>Status<wbr>Time</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#lasthttpstatus" class="tsd-kind-icon">last<wbr>Http<wbr>Status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#lastparsetime" class="tsd-kind-icon">last<wbr>Parse<wbr>Time</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#lastupdatetime" class="tsd-kind-icon">last<wbr>Update<wbr>Time</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#link" class="tsd-kind-icon">link</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#locked" class="tsd-kind-icon">locked</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#originalurl" class="tsd-kind-icon">original<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#ownername" class="tsd-kind-icon">owner<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#parseerrors" class="tsd-kind-icon">parse<wbr>Errors</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#title" class="tsd-kind-icon">title</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_src_types_.piapiitunespodcast.html#url" class="tsd-kind-icon">url</a></li>
 							</ul>
 						</section>
 					</div>
@@ -180,16 +178,6 @@
 							<p>category id: name, NOTE: this is not always present on the raw responses and will be populated with an empty object when missing form the api response</p>
 						</div>
 					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="chash" class="tsd-anchor"></a>
-					<h3>chash</h3>
-					<div class="tsd-signature tsd-kind-icon">chash<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L132">src/types.ts:132</a></li>
-						</ul>
-					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="contenttype" class="tsd-anchor"></a>
@@ -256,22 +244,12 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="episodecount" class="tsd-anchor"></a>
-					<h3>episode<wbr>Count</h3>
-					<div class="tsd-signature tsd-kind-icon">episode<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L131">src/types.ts:131</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="funding" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> funding</h3>
 					<div class="tsd-signature tsd-kind-icon">funding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L142">src/types.ts:142</a></li>
+							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L150">src/types.ts:150</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -569,16 +547,6 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="value" class="tsd-anchor"></a>
-					<h3>value</h3>
-					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>destinations<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>address<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>split<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">; </span>model<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>suggested<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/RyanHirsch/podcastdx-client/blob/b73167e/src/types.ts#L133">src/types.ts:133</a></li>
-						</ul>
-					</aside>
-				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -627,111 +595,102 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
 						<a href="_src_types_.piapifeedbase.html" class="tsd-kind-icon">PIApi<wbr>Feed<wbr>Base</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_src_types_.piapiitunespodcast.html" class="tsd-kind-icon">PIApi<wbr>Itunes<wbr>Podcast</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="_src_types_.piapinewfeed.html" class="tsd-kind-icon">PIApi<wbr>New<wbr>Feed</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_src_types_.piapipodcast.html" class="tsd-kind-icon">PIApi<wbr>Podcast</a>
+						<a href="_src_types_.piapiitunespodcast.html" class="tsd-kind-icon">PIApi<wbr>Itunes<wbr>Podcast</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#artwork" class="tsd-kind-icon">artwork</a>
+								<a href="_src_types_.piapiitunespodcast.html#artwork" class="tsd-kind-icon">artwork</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#author" class="tsd-kind-icon">author</a>
+								<a href="_src_types_.piapiitunespodcast.html#author" class="tsd-kind-icon">author</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#categories" class="tsd-kind-icon">categories</a>
+								<a href="_src_types_.piapiitunespodcast.html#categories" class="tsd-kind-icon">categories</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_src_types_.piapiitunespodcast.html#contenttype" class="tsd-kind-icon">content<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_src_types_.piapiitunespodcast.html#crawlerrors" class="tsd-kind-icon">crawl<wbr>Errors</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_src_types_.piapiitunespodcast.html#dead" class="tsd-kind-icon">dead</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_src_types_.piapiitunespodcast.html#description" class="tsd-kind-icon">description</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.piapipodcast.html#chash" class="tsd-kind-icon">chash</a>
+								<a href="_src_types_.piapiitunespodcast.html#funding" class="tsd-kind-icon">funding</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#contenttype" class="tsd-kind-icon">content<wbr>Type</a>
+								<a href="_src_types_.piapiitunespodcast.html#generator" class="tsd-kind-icon">generator</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#crawlerrors" class="tsd-kind-icon">crawl<wbr>Errors</a>
+								<a href="_src_types_.piapiitunespodcast.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#dead" class="tsd-kind-icon">dead</a>
+								<a href="_src_types_.piapiitunespodcast.html#image" class="tsd-kind-icon">image</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#description" class="tsd-kind-icon">description</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.piapipodcast.html#episodecount" class="tsd-kind-icon">episode<wbr>Count</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.piapipodcast.html#funding" class="tsd-kind-icon">funding</a>
+								<a href="_src_types_.piapiitunespodcast.html#imageurlhash" class="tsd-kind-icon">image<wbr>Url<wbr>Hash</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#generator" class="tsd-kind-icon">generator</a>
+								<a href="_src_types_.piapiitunespodcast.html#itunesid" class="tsd-kind-icon">itunes<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#id" class="tsd-kind-icon">id</a>
+								<a href="_src_types_.piapiitunespodcast.html#language" class="tsd-kind-icon">language</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#image" class="tsd-kind-icon">image</a>
+								<a href="_src_types_.piapiitunespodcast.html#lastcrawltime" class="tsd-kind-icon">last<wbr>Crawl<wbr>Time</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#imageurlhash" class="tsd-kind-icon">image<wbr>Url<wbr>Hash</a>
+								<a href="_src_types_.piapiitunespodcast.html#lastgoodhttpstatustime" class="tsd-kind-icon">last<wbr>Good<wbr>Http<wbr>Status<wbr>Time</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#itunesid" class="tsd-kind-icon">itunes<wbr>Id</a>
+								<a href="_src_types_.piapiitunespodcast.html#lasthttpstatus" class="tsd-kind-icon">last<wbr>Http<wbr>Status</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#language" class="tsd-kind-icon">language</a>
+								<a href="_src_types_.piapiitunespodcast.html#lastparsetime" class="tsd-kind-icon">last<wbr>Parse<wbr>Time</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#lastcrawltime" class="tsd-kind-icon">last<wbr>Crawl<wbr>Time</a>
+								<a href="_src_types_.piapiitunespodcast.html#lastupdatetime" class="tsd-kind-icon">last<wbr>Update<wbr>Time</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#lastgoodhttpstatustime" class="tsd-kind-icon">last<wbr>Good<wbr>Http<wbr>Status<wbr>Time</a>
+								<a href="_src_types_.piapiitunespodcast.html#link" class="tsd-kind-icon">link</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#lasthttpstatus" class="tsd-kind-icon">last<wbr>Http<wbr>Status</a>
+								<a href="_src_types_.piapiitunespodcast.html#locked" class="tsd-kind-icon">locked</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#lastparsetime" class="tsd-kind-icon">last<wbr>Parse<wbr>Time</a>
+								<a href="_src_types_.piapiitunespodcast.html#originalurl" class="tsd-kind-icon">original<wbr>Url</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#lastupdatetime" class="tsd-kind-icon">last<wbr>Update<wbr>Time</a>
+								<a href="_src_types_.piapiitunespodcast.html#ownername" class="tsd-kind-icon">owner<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#link" class="tsd-kind-icon">link</a>
+								<a href="_src_types_.piapiitunespodcast.html#parseerrors" class="tsd-kind-icon">parse<wbr>Errors</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#locked" class="tsd-kind-icon">locked</a>
+								<a href="_src_types_.piapiitunespodcast.html#title" class="tsd-kind-icon">title</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#originalurl" class="tsd-kind-icon">original<wbr>Url</a>
+								<a href="_src_types_.piapiitunespodcast.html#type" class="tsd-kind-icon">type</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#ownername" class="tsd-kind-icon">owner<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#parseerrors" class="tsd-kind-icon">parse<wbr>Errors</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#title" class="tsd-kind-icon">title</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#type" class="tsd-kind-icon">type</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_src_types_.piapipodcast.html#url" class="tsd-kind-icon">url</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_src_types_.piapipodcast.html#value" class="tsd-kind-icon">value</a>
+								<a href="_src_types_.piapiitunespodcast.html#url" class="tsd-kind-icon">url</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_src_types_.piapinewfeed.html" class="tsd-kind-icon">PIApi<wbr>New<wbr>Feed</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="_src_types_.piapipodcast.html" class="tsd-kind-icon">PIApi<wbr>Podcast</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="_src_types_.piapirandomepisode.html" class="tsd-kind-icon">PIApi<wbr>Random<wbr>Episode</a>
 					</li>
