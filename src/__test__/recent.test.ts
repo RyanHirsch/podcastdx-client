@@ -44,8 +44,8 @@ describe("recent", () => {
 
     it("supports walking back through episodes string", async () => {
       const first = 1305556075;
-      const second = 1304492281;
-      const third = 1304390354;
+      const second = 1305555991;
+      const third = 1305555976;
 
       const secondEpisode = await client.recentEpisodes({
         before: first,

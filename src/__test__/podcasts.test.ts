@@ -1,13 +1,13 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable no-await-in-loop */
 import PodcastIndexClient from "../index";
-import { ApiResponse, PIApiPodcast } from "../types";
+import { ApiResponse, PIApiItunesPodcast, PIApiPodcast } from "../types";
 
 describe("podcasts api", () => {
   let client: PodcastIndexClient;
   let feedByUrl: PIApiPodcast;
   let feedById: PIApiPodcast;
-  let feedByItunesId: PIApiPodcast;
+  let feedByItunesId: PIApiItunesPodcast;
   const feedUrl = "https://feeds.theincomparable.com/batmanuniversity";
   const feedId = 75075;
   const iTunesId = 1441923632;
