@@ -49,3 +49,7 @@ client.episodeById(16795106).then(console.log);
 1. Ensure you're fully committed
    1. Make sure tests are green schema is correct `yarn tsc && yarn test && yarn validate`
 2. Run `yarn publish`
+
+## Community
+
+Join on Discord at <https://discord.gg/d6apPvR3N6> or on <https://podcastindex.social/>
