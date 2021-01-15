@@ -1,6 +1,6 @@
 {
   "name": "podcastdx-client",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
@@ -56,11 +56,11 @@
   },
   "dependencies": {
     "ajv": "^6.12.6",
-    "typescript-json-schema": "^0.43.0",
     "debug": "^4.2.0",
     "dotenv": "^8.2.0",
     "mixpanel": "^0.13.0",
     "node-fetch": "^2.6.1",
-    "ramda": "^0.27.1"
+    "ramda": "^0.27.1",
+    "typescript-json-schema": "^0.43.0"
   }
 }
