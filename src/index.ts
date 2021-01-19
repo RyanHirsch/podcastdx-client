@@ -44,7 +44,7 @@ register({
   "node environment": process.env.NODE_ENV,
 });
 
-export default class PodcastIndexClient {
+class PodcastIndexClient {
   private apiUrl = `https://api.podcastindex.org/api/1.0`;
 
   private userAgent = clientUserAgent;
@@ -373,3 +373,5 @@ export default class PodcastIndexClient {
     return this.fetch("/stats/current");
   }
 }
+
+export = PodcastIndexClient;
