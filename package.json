@@ -1,8 +1,8 @@
 {
   "name": "podcastdx-client",
-  "version": "4.1.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "4.1.1",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "license": "MIT",
   "repository": {
     "url": "https://github.com/RyanHirsch/podcastdx-client"
