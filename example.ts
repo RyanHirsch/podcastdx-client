@@ -6,7 +6,12 @@ const client = new PodcastIndexClient({
   enableAnalytics: true,
 });
 
-(async function () {
+async function log(thennable: Promise<unknown>): Promise<void> {
+  // eslint-disable-next-line no-console
+  console.log(JSON.stringify(await thennable, null, 2));
+}
+
+(async function runner() {
   // const result = await client.search("Peace in their time");
   // console.log(JSON.stringify(result));
 
@@ -15,7 +20,7 @@ const client = new PodcastIndexClient({
 
   // const foundFeed = await client.podcastByItunesId(1538359974);
   // console.log(JSON.stringify(foundFeed, null, 2));
-  // const result = await client.recentEpisodes(3);
+  await log(client.recentEpisodes({ max: 3 }));
   // result.items.forEach((f) => console.log(f));
   // result.feeds.forEach((f) => console.log(f.categories));
   // console.log(await client.categories());
@@ -25,7 +30,7 @@ const client = new PodcastIndexClient({
   // console.log(JSON.stringify(feeds));
   // console.log(podcast.items);
 
-  console.log(JSON.stringify(await client.stats(), null, 2));
+  // console.log(JSON.stringify(await client.stats(), null, 2));
 })();
 
 // 39633 categories
