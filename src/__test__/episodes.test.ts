@@ -37,7 +37,7 @@ describe("episodes api", () => {
     });
     it("returns all items for multiple feeds", async () => {
       const altFeedResults = await client.episodesByFeedId(altFeedId);
-      const searchResult = await client.episodesByFeedId([feedId, altFeedId]);
+      const searchResult = await client.episodesByFeedId([feedId, altFeedId], { max: 100 });
       expect(searchResult.items.length).toEqual(
         altFeedResults.items.length + episodesByFeedId.length
       );

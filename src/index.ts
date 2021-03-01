@@ -7,10 +7,11 @@ import { track, init, register } from "./analytics";
 import logger from "./logger";
 import { ApiResponse } from "./types";
 import { normalizeKey, toEpochTimestamp } from "./utils";
+import { version } from "../package.json";
 
 dotEnv.config();
 
-const clientUserAgent = `podcastdx client/2.4.1`;
+const clientUserAgent = `podcastdx client/${version}`;
 const apiVersion = "1.0";
 
 function encodeObjectToQueryString(qs?: ApiResponse.AnyQueryOptions) {

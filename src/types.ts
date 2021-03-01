@@ -130,7 +130,7 @@ export interface PIApiFeed extends PIApiFeedBase {
 export interface PIApiPodcast extends PIApiFeed {
   episodeCount: number;
   chash: string;
-  value: {
+  value?: {
     model: { type: string; method: string; suggested: string };
     destinations: Array<{
       name: string;
@@ -138,7 +138,7 @@ export interface PIApiPodcast extends PIApiFeed {
       type: string;
       split: number;
     }>;
-  } | null;
+  };
   funding?: { url: string; message: string };
 }
 
@@ -154,6 +154,8 @@ export interface PIApiItunesPodcast extends PIApiFeed {
 export interface PIApiNewFeed extends PIApiFeedBase {
   /** [Unix Epoch] Timestamp */
   newestItemPublishTime: number;
+  description: string;
+  image: string;
 }
 
 /** from recentSoundbites */
@@ -181,12 +183,12 @@ export interface PIApiRecentNewFeed {
 
 /** from stats */
 export interface PIStats {
-  feedCountTotal: string;
-  episodeCountTotal: string;
-  feedsWithNewEpisodes3days: string;
-  feedsWithNewEpisodes10days: string;
-  feedsWithNewEpisodes30days: string;
-  feedsWithNewEpisodes90days: string;
+  feedCountTotal: number;
+  episodeCountTotal: number;
+  feedsWithNewEpisodes3days: number;
+  feedsWithNewEpisodes10days: number;
+  feedsWithNewEpisodes30days: number;
+  feedsWithNewEpisodes90days: number;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-namespace

@@ -27,22 +27,22 @@
       "type": "object",
       "properties": {
         "feedCountTotal": {
-          "type": "string"
+          "type": "number"
         },
         "episodeCountTotal": {
-          "type": "string"
+          "type": "number"
         },
         "feedsWithNewEpisodes3days": {
-          "type": "string"
+          "type": "number"
         },
         "feedsWithNewEpisodes10days": {
-          "type": "string"
+          "type": "number"
         },
         "feedsWithNewEpisodes30days": {
-          "type": "string"
+          "type": "number"
         },
         "feedsWithNewEpisodes90days": {
-          "type": "string"
+          "type": "number"
         }
       },
       "additionalProperties": false,

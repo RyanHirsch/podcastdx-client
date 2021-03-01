@@ -48,6 +48,12 @@
           "description": "[Unix Epoch] Timestamp",
           "type": "number"
         },
+        "description": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
         "id": {
           "description": "The internal podcastindex.org feed id.",
           "type": "number"
@@ -89,7 +95,9 @@
       "additionalProperties": false,
       "required": [
         "categories",
+        "description",
         "id",
+        "image",
         "itunesId",
         "language",
         "newestItemPublishTime",

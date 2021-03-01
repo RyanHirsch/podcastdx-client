@@ -2,7 +2,9 @@
   "compilerOptions": {
     "target": "es2018",
     "module": "commonjs",
-    "lib": ["ESNext"],
+    "lib": [
+      "ESNext"
+    ],
     "esModuleInterop": true,
     "strict": true,
     "strictNullChecks": true,
@@ -15,8 +17,16 @@
     "sourceMap": true,
     "outDir": "dist",
     "baseUrl": ".",
-    "declaration": true
+    "declaration": true,
+    "resolveJsonModule": true
   },
-  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts", "dist"],
-  "include": ["src/**/*.ts"]
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "dist"
+  ],
+  "include": [
+    "src/**/*.ts"
+  ]
 }

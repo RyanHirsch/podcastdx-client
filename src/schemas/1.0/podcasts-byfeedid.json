@@ -47,67 +47,60 @@
           "type": "string"
         },
         "value": {
-          "anyOf": [
-            {
+          "type": "object",
+          "properties": {
+            "model": {
               "type": "object",
               "properties": {
-                "model": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string"
-                    },
-                    "method": {
-                      "type": "string"
-                    },
-                    "suggested": {
-                      "type": "string"
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": [
-                    "method",
-                    "suggested",
-                    "type"
-                  ]
+                "type": {
+                  "type": "string"
                 },
-                "destinations": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "address": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string"
-                      },
-                      "split": {
-                        "type": "number"
-                      }
-                    },
-                    "additionalProperties": false,
-                    "required": [
-                      "address",
-                      "name",
-                      "split",
-                      "type"
-                    ]
-                  }
+                "method": {
+                  "type": "string"
+                },
+                "suggested": {
+                  "type": "string"
                 }
               },
               "additionalProperties": false,
               "required": [
-                "destinations",
-                "model"
+                "method",
+                "suggested",
+                "type"
               ]
             },
-            {
-              "type": "null"
+            "destinations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "split": {
+                    "type": "number"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "address",
+                  "name",
+                  "split",
+                  "type"
+                ]
+              }
             }
+          },
+          "additionalProperties": false,
+          "required": [
+            "destinations",
+            "model"
           ]
         },
         "funding": {
@@ -272,8 +265,7 @@
         "parseErrors",
         "title",
         "type",
-        "url",
-        "value"
+        "url"
       ]
     },
     "PodcastFeedType": {
