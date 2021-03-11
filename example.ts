@@ -20,7 +20,7 @@ async function log(thennable: Promise<unknown>): Promise<void> {
 
   // const foundFeed = await client.podcastByItunesId(1538359974);
   // console.log(JSON.stringify(foundFeed, null, 2));
-  await log(client.recentEpisodes({ max: 3 }));
+  // await log(client.recentEpisodes({ max: 3 }));
   // result.items.forEach((f) => console.log(f));
   // result.feeds.forEach((f) => console.log(f.categories));
   // console.log(await client.categories());
@@ -31,6 +31,8 @@ async function log(thennable: Promise<unknown>): Promise<void> {
   // console.log(podcast.items);
 
   // console.log(JSON.stringify(await client.stats(), null, 2));
+  await log(client.raw("/podcasts/byfeedid?id=75075"));
+  await log(client.raw("/podcasts/byfeedid", { id: 75075 }));
 })();
 
 // 39633 categories

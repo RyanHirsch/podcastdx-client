@@ -120,6 +120,20 @@ class PodcastIndexClient {
     });
   }
 
+  /**
+   * Make a raw request to podcast index. This is an escape hatch for leveraging the auth handling in the client
+   * but managing the calls and responses yourself.
+   * Example:
+   *      client.raw("/podcasts/byfeedid?id=75075");
+   *      client.raw("/podcasts/byfeedid", { id: 75075 });
+   *
+   * @param endpoint
+   * @param qs
+   */
+  public raw<T>(endpoint: string, qs?: ApiResponse.AnyQueryOptions): Promise<T> {
+    return this.fetch<T>(endpoint, qs);
+  }
+
   // #region Search
   /**
    * List all categories
