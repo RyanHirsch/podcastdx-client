@@ -63,7 +63,7 @@
 				</a>
 				<p>The is a client for interacting with <a href="https://podcastindex.org/">https://podcastindex.org/</a>. In order for this to be useful, you need to get a developer <code>API KEY</code> and <code>API SECRET</code> from <a href="https://api.podcastindex.org">https://api.podcastindex.org</a></p>
 				<p>This includes typescript types as well as JSDoc strings that should make interacting with the API easier.</p>
-				<p>Optionally provide usage analytics back to me to help me improve the library. <strong>If you do not provide this value, analytics will not be sent. It provides privacy by default.</strong></p>
+				<p>Optionally provide usage analytics back to me to help me improve the library. <strong>If you do not provide this value, analytics will be sent. You must opt-out.</strong></p>
 				<p>JSON Schema generated from the types contained in the project can be found at <a href="https://github.com/RyanHirsch/podcastdx-client/tree/master/src/schemas">https://github.com/RyanHirsch/podcastdx-client/tree/master/src/schemas</a></p>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
@@ -80,7 +80,8 @@
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">PodcastIndexClient</span><span style="color: #000000">({</span>
 <span style="color: #000000">  </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">env</span><span style="color: #000000">.</span><span style="color: #0070C1">API_KEY</span><span style="color: #000000">,</span>
 <span style="color: #000000">  </span><span style="color: #001080">secret:</span><span style="color: #000000"> </span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">env</span><span style="color: #000000">.</span><span style="color: #0070C1">API_SECRET</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">enableAnalytics:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #008000">// opt-out of analytics collection</span>
+<span style="color: #000000">  </span><span style="color: #001080">disableAnalytics:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
 <span style="color: #000000">});</span>
 
 <span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">search</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;javascript&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #001080">log</span><span style="color: #000000">);</span>
