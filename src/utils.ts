@@ -27,3 +27,10 @@ export function normalizeKey<ObjT, KeyT extends keyof ObjT>(
     [key]: val,
   };
 }
+
+export function ensureArray<T>(val: T | T[] | undefined): T[] | undefined {
+  if (typeof val === "undefined") {
+    return undefined;
+  }
+  return Array.isArray(val) ? val : [val];
+}

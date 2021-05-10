@@ -4,7 +4,7 @@ The is a client for interacting with <https://podcastindex.org/>. In order for t
 
 This includes typescript types as well as JSDoc strings that should make interacting with the API easier.
 
-Optionally provide usage analytics back to me to help me improve the library. **If you do not provide this value, analytics will not be sent. It provides privacy by default.**
+Optionally provide usage analytics back to me to help me improve the library. **If you do not provide this value, analytics will be sent. You must opt-out.**
 
 JSON Schema generated from the types contained in the project can be found at <https://github.com/RyanHirsch/podcastdx-client/tree/master/src/schemas>
 
@@ -25,7 +25,8 @@ import PodcastIndexClient from "podcastdx-client";
 const client = new PodcastIndexClient({
   key: process.env.API_KEY,
   secret: process.env.API_SECRET,
-  enableAnalytics: true,
+  // opt-out of analytics collection
+  disableAnalytics: true,
 });
 
 client.search("javascript").then(console.log);

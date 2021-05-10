@@ -7,7 +7,10 @@ let enableAnalytics = true;
 
 export function track(
   event: string,
-  props?: Record<string, string | number | Date>
+  props?: Record<
+    string,
+    string | number | Date | boolean | undefined | string[] | number[] | Array<string | number>
+  >
 ): Promise<void> {
   if (!enableAnalytics) {
     return Promise.resolve();

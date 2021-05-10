@@ -52,4 +52,9 @@ describe("search api", () => {
     expect(searchResult.count).toEqual(max);
     expect(searchResult.feeds).toHaveLength(max);
   });
+
+  it("supports a person query", async () => {
+    const searchResult = await client.searchPerson("Adam Curry");
+    expect(searchResult.status).toEqual("true");
+  });
 });

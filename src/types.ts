@@ -67,6 +67,15 @@ export interface PIApiRecentEpisode extends Omit<PIApiEpisodeBase, "chaptersUrl"
   feedTitle: string;
 }
 
+/** Returned by searchPerson */
+export interface PIApiPersonEpisode
+  extends Omit<PIApiEpisodeInfo, "datePublishedPretty" | "duration"> {
+  duration: number | null;
+  feedUrl: string;
+  feedAuthor: string;
+  feedTitle: string;
+}
+
 interface PIApiFeedBase {
   /** The internal podcastindex.org feed id. */
   id: number;
@@ -129,6 +138,7 @@ export interface PIApiFeed extends PIApiFeedBase {
 /** Returned by podcastBy* */
 export interface PIApiPodcast extends PIApiFeed {
   episodeCount: number;
+  explicit: boolean;
   chash: string;
   value?: {
     model: { type: string; method: string; suggested: string };
@@ -154,6 +164,7 @@ export interface PIApiItunesPodcast extends PIApiFeed {
 export interface PIApiNewFeed extends PIApiFeedBase {
   /** [Unix Epoch] Timestamp */
   newestItemPublishTime: number;
+  oldestItemPublishTime: number;
   description: string;
   image: string;
 }
@@ -179,6 +190,7 @@ export interface PIApiRecentNewFeed {
   status: ApiResponse.NewFeedStatus;
   contentHash: string;
   language: string;
+  image: string;
 }
 
 /** from stats */
@@ -189,6 +201,7 @@ export interface PIStats {
   feedsWithNewEpisodes10days: number;
   feedsWithNewEpisodes30days: number;
   feedsWithNewEpisodes90days: number;
+  feedsWithValueBlocks: number;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -211,6 +224,14 @@ export namespace ApiResponse {
   export interface Search {
     status: ApiResponse.Status;
     feeds: Array<PIApiFeed>;
+    count: number;
+    description: string;
+    query: string;
+  }
+
+  export interface SearchPerson {
+    status: ApiResponse.Status;
+    items: Array<PIApiPersonEpisode>;
     count: number;
     description: string;
     query: string;

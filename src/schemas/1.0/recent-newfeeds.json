@@ -59,12 +59,16 @@
         },
         "language": {
           "type": "string"
+        },
+        "image": {
+          "type": "string"
         }
       },
       "additionalProperties": false,
       "required": [
         "contentHash",
         "id",
+        "image",
         "language",
         "status",
         "timeAdded",

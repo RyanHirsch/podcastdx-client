@@ -43,6 +43,9 @@
         },
         "feedsWithNewEpisodes90days": {
           "type": "number"
+        },
+        "feedsWithValueBlocks": {
+          "type": "number"
         }
       },
       "additionalProperties": false,
@@ -52,7 +55,8 @@
         "feedsWithNewEpisodes10days",
         "feedsWithNewEpisodes30days",
         "feedsWithNewEpisodes3days",
-        "feedsWithNewEpisodes90days"
+        "feedsWithNewEpisodes90days",
+        "feedsWithValueBlocks"
       ]
     }
   },

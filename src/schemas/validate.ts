@@ -13,6 +13,7 @@ const client = new PodcastIndexClient();
 
 const randomValues = {
   search: ["politics", "tech"],
+  searchPerson: ["Adam Curry"],
   feedUrl: [
     "https://feeds.theincomparable.com/batmanuniversity",
     "https://feeds.twit.tv/twit.xml",
@@ -24,7 +25,8 @@ const randomValues = {
   ],
   feedId: ["286504", "555343", "854465", "75075", "453550", "448732", "710181"],
   iTunesId: ["1439743528", "1491697526", "1508189931", "977386811", "1518105204"],
-  episodeId: ["1259601251", "1258727571", "1258177517", "1258243519", "1258315764"],
+  episodeId: ["1259601251", "1258177517", "1258243519", "1258315764"],
+  // "1258727571"???
 };
 
 function getRandom<K extends keyof typeof randomValues>(name: K) {
@@ -65,6 +67,15 @@ const types: ValidationConfig[] = [
     title:
       "This call returns all of the feeds that match the search terms in the title of the feed.",
     typeName: "ApiResponse.Search",
+  },
+  {
+    getResponse: () => client.searchPerson(getRandom("searchPerson")),
+    endpoint: "/api/1.0/search/byperson",
+    params: {
+      q: "search terms",
+    },
+    title: "This call returns all of the episodes where the specified person is mentioned.",
+    typeName: "ApiResponse.SearchPerson",
   },
   // #endregion
   // #region Podcasts

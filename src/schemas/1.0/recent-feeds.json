@@ -48,6 +48,9 @@
           "description": "[Unix Epoch] Timestamp",
           "type": "number"
         },
+        "oldestItemPublishTime": {
+          "type": "number"
+        },
         "description": {
           "type": "string"
         },
@@ -101,6 +104,7 @@
         "itunesId",
         "language",
         "newestItemPublishTime",
+        "oldestItemPublishTime",
         "title",
         "url"
       ]

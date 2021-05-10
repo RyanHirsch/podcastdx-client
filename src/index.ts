@@ -6,7 +6,7 @@ import { pick } from "ramda";
 import { track, init, register } from "./analytics";
 import logger from "./logger";
 import { ApiResponse } from "./types";
-import { normalizeKey, toEpochTimestamp } from "./utils";
+import { normalizeKey, toEpochTimestamp, ensureArray } from "./utils";
 import { version } from "../package.json";
 
 dotEnv.config();
@@ -60,9 +60,11 @@ class PodcastIndexClient {
     key = process.env.API_KEY,
     secret = process.env.API_SECRET,
     enableAnalytics,
+    disableAnalytics,
   }: {
     key?: string;
     secret?: string;
+    disableAnalytics?: boolean;
     enableAnalytics?: boolean;
   } = {}) {
     if (!key || !secret) {
@@ -70,7 +72,7 @@ class PodcastIndexClient {
     }
     this.key = key;
     this.secret = secret;
-    init(key, { enableAnalytics: enableAnalytics ?? false });
+    init(key, { enableAnalytics: enableAnalytics === false ? false : !disableAnalytics });
   }
 
   private generateHeaders() {
@@ -130,8 +132,17 @@ class PodcastIndexClient {
    * @param endpoint
    * @param qs
    */
-  public raw<T>(endpoint: string, qs?: ApiResponse.AnyQueryOptions): Promise<T> {
-    return this.fetch<T>(endpoint, qs);
+  public async raw<T>(endpoint: string, qs?: ApiResponse.AnyQueryOptions): Promise<T> {
+    const result = await this.fetch<T>(endpoint, qs);
+
+    track("Raw", {
+      endpoint,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      ...("status" in result ? { status: result.status } : undefined),
+    });
+
+    return result;
   }
 
   // #region Search
@@ -140,8 +151,14 @@ class PodcastIndexClient {
    *
    * @param query search query
    */
-  public categories(): Promise<ApiResponse.Categories> {
-    return this.fetch("/categories/list");
+  public async categories(): Promise<ApiResponse.Categories> {
+    const result = await this.fetch<ApiResponse.Categories>("/categories/list");
+    track("Categories Response", {
+      count: result.count,
+      length: result.feeds.length,
+      status: result.status,
+    });
+    return result;
   }
   // #endregion
 
@@ -152,18 +169,59 @@ class PodcastIndexClient {
    *
    * @param query search query
    */
-  public search(
+  public async search(
     query: string,
     options: {
       clean?: boolean;
       max?: number;
+      fulltext?: boolean;
     } = {}
   ): Promise<ApiResponse.Search> {
-    return this.fetch("/search/byterm", {
+    const result = await this.fetch<ApiResponse.Search>("/search/byterm", {
       q: query,
       max: options.max ?? 25,
       clean: Boolean(options.clean),
+      fulltext: Boolean(options.fulltext),
     });
+
+    track("Search", {
+      query,
+      clean: Boolean(options.clean),
+      fulltext: options.fulltext,
+      max: options.max,
+      count: result.count,
+      length: result.feeds.length,
+      status: result.status,
+    });
+
+    return result;
+  }
+
+  /**
+   * This call returns all of the episodes where the specified person is mentioned.
+   *
+   * @param query search query
+   */
+  public async searchPerson(
+    query: string,
+    options: {
+      fulltext?: boolean;
+    } = {}
+  ): Promise<ApiResponse.SearchPerson> {
+    const result = await this.fetch<ApiResponse.SearchPerson>("/search/byperson", {
+      q: query,
+      fulltext: Boolean(options.fulltext),
+    });
+
+    track("Search Person", {
+      query,
+      fulltext: options.fulltext,
+      count: result.count,
+      length: result.items.length,
+      status: result.status,
+    });
+
+    return result;
   }
   // #endregion
 
@@ -171,16 +229,32 @@ class PodcastIndexClient {
   /**
    * This call returns the most recent [max] number of episodes globally across the whole index, in reverse chronological order. Max of 1000
    */
-  public recentEpisodes(
+  public async recentEpisodes(
     options: {
       max?: number;
       /** If you pass this argument, any item containing this string will be discarded from the result set. This may, in certain cases, reduce your set size below your “max” value. */
       excludeString?: string;
       /** If you pass an episode id, you will get recent episodes before that id, allowing you to walk back through the episode history sequentially. */
       before?: number;
+      /** If present, return the full text value of any text fields (ex: description). If not provided, field value is truncated to 100 words. */
+      fulltext?: boolean;
     } = {}
   ): Promise<ApiResponse.RecentEpisodes> {
-    return this.fetch("/recent/episodes", { ...options, max: options.max ?? 10 });
+    const result = await this.fetch<ApiResponse.RecentEpisodes>("/recent/episodes", {
+      ...options,
+      max: options.max ?? 10,
+    });
+
+    track("Recent Episodes", {
+      max: options.max,
+      excludeString: options.excludeString,
+      before: options.before,
+      count: result.count,
+      length: result.items.length,
+      status: result.status,
+    });
+
+    return result;
   }
 
   /**
@@ -228,6 +302,16 @@ class PodcastIndexClient {
 
     const result = await this.fetch<ApiResponse.RecentFeeds>("/recent/feeds", apiOptions);
 
+    track("Recent Feeds", {
+      max: options.max,
+      lang: ensureArray(options.lang),
+      category: ensureArray(options.category),
+      notCategory: ensureArray(options.notCategory),
+      count: result.count,
+      length: result.feeds.length,
+      status: result.status,
+    });
+
     return {
       ...result,
       feeds: result.feeds
@@ -246,20 +330,38 @@ class PodcastIndexClient {
    *
    * @param options
    */
-  public recentNewFeeds(
+  public async recentNewFeeds(
     options: {
       /** Max number of items to return, defaults to 10 */
       max?: number;
     } = {}
   ): Promise<ApiResponse.RecentNewFeeds> {
-    return this.fetch("/recent/newfeeds", { max: options.max ?? 10 });
+    const result = await this.fetch<ApiResponse.RecentNewFeeds>("/recent/newfeeds", {
+      max: options.max ?? 10,
+    });
+
+    track("Recent New Feeds", {
+      max: options.max,
+      count: result.count,
+      length: result.feeds.length,
+      status: result.status,
+    });
+
+    return result;
   }
 
   /**
    * The most recent 60 soundbites that the index has discovered
    */
-  public recentSoundbites(): Promise<ApiResponse.RecentSoundbites> {
-    return this.fetch("/recent/soundbites");
+  public async recentSoundbites(): Promise<ApiResponse.RecentSoundbites> {
+    const result = await this.fetch<ApiResponse.RecentSoundbites>("/recent/soundbites");
+    track("Recent Soundbites", {
+      count: result.count,
+      length: result.items.length,
+      status: result.status,
+    });
+
+    return result;
   }
   // #endregion
 
@@ -270,6 +372,13 @@ class PodcastIndexClient {
     if (!result.feed.categories) {
       result.feed.categories = {};
     }
+
+    track("Feed by URL", {
+      url,
+      categoryCount: Object.keys(result.feed.categories).length,
+      status: result.status,
+    });
+
     return result;
   }
 
@@ -279,6 +388,13 @@ class PodcastIndexClient {
     if (!result.feed.categories) {
       result.feed.categories = {};
     }
+
+    track("Feed by ID", {
+      id,
+      categoryCount: Object.keys(result.feed.categories).length,
+      status: result.status,
+    });
+
     return result;
   }
 
@@ -288,62 +404,116 @@ class PodcastIndexClient {
     if (!result.feed.categories) {
       result.feed.categories = {};
     }
+
+    track("Feed by iTunes ID", {
+      id,
+      categoryCount: Object.keys(result.feed.categories).length,
+      status: result.status,
+    });
+
     return result;
   }
   // #endregion
 
   // #region Episodes
   /** This call returns all the episodes we know about for this feed, in reverse chronological order. */
-  public episodesByFeedUrl(
+  public async episodesByFeedUrl(
     url: string,
     options: {
       /** You can specify a maximum number of results to return */
       max?: number;
       /** You can specify a hard-coded unix timestamp, or a negative integer that represents a number of seconds prior to right now. Either way you specify, the search will start from that time and only return feeds updated since then. */
       since?: number;
+      fulltext?: boolean;
     } = {}
   ): Promise<ApiResponse.EpisodesByFeedUrl> {
     const { since, ...rest } = options;
-    return this.fetch("/episodes/byfeedurl", { ...rest, since: toEpochTimestamp(since), url });
+    const result = await this.fetch<ApiResponse.EpisodesByFeedUrl>("/episodes/byfeedurl", {
+      ...rest,
+      since: toEpochTimestamp(since),
+      url,
+    });
+
+    track("Episodes by Feed URL", {
+      url,
+      fulltext: options.fulltext,
+      max: options.max,
+      since: options.since,
+      count: result.count,
+      length: result.items.length,
+      status: result.status,
+    });
+
+    return result;
   }
 
   /**
    * This call returns all the episodes we know about for this feed, in reverse chronological order.
    * Note: The id parameter is the internal Podcastindex id for this feed.
    */
-  public episodesByFeedId(
+  public async episodesByFeedId(
     id: number | number[],
     options: {
       /** You can specify a maximum number of results to return */
       max?: number;
       /** You can specify a hard-coded unix timestamp, or a negative integer that represents a number of seconds prior to right now. Either way you specify, the search will start from that time and only return feeds updated since then. */
       since?: number;
+      fulltext?: boolean;
     } = {}
   ): Promise<ApiResponse.EpisodesByFeedId> {
     const { since, ...rest } = options;
     const parsedId = Array.isArray(id) ? id.join(",") : id;
-    return this.fetch("/episodes/byfeedid", {
+    const result = await this.fetch<ApiResponse.EpisodesByFeedId>("/episodes/byfeedid", {
       ...rest,
       since: toEpochTimestamp(since),
       id: parsedId,
     });
+
+    track("Episodes by Feed ID", {
+      id,
+      fulltext: options.fulltext,
+      max: options.max,
+      since: options.since,
+      count: result.count,
+      length: result.items.length,
+      status: result.status,
+    });
+
+    return result;
   }
 
   /**
    * If we have an itunes id on file for a feed, then this call returns all the episodes we know about for the feed, in reverse chronological order.
    * Note: The itunes id parameter can either be the number alone, or be prepended with “id”.
    */
-  public episodesByItunesId(
+  public async episodesByItunesId(
     id: number,
     options: {
       /** You can specify a maximum number of results to return */
       max?: number;
       /** You can specify a hard-coded unix timestamp, or a negative integer that represents a number of seconds prior to right now. Either way you specify, the search will start from that time and only return feeds updated since then. */
       since?: number | Date;
+      fulltext?: boolean;
     } = {}
   ): Promise<ApiResponse.EpisodesByItunesId> {
     const { since, ...rest } = options;
-    return this.fetch("/episodes/byitunesid", { ...rest, since: toEpochTimestamp(since), id });
+    const result = await this.fetch<ApiResponse.EpisodesByItunesId>("/episodes/byitunesid", {
+      ...rest,
+      since: toEpochTimestamp(since),
+      id,
+    });
+
+    track("Episodes by iTunes ID", {
+      id,
+      fulltext: options.fulltext,
+      max: options.max,
+      since: options.since,
+      count: result.count,
+      length: result.items.length,
+      status: result.status,
+    });
+
+    return result;
   }
 
   /**
@@ -353,7 +523,7 @@ class PodcastIndexClient {
    * Note: Language and category names are case-insensitive.
    * Note: You can mix and match the cat and notcat filters to fine tune a very specific result set.
    */
-  public episodesRandom(
+  public async episodesRandom(
     options: {
       /** You can specify a maximum number of results to return */
       max?: number;
@@ -375,17 +545,47 @@ class PodcastIndexClient {
       ? options.notcat.join(",")
       : options.notcat;
 
-    return this.fetch("/episodes/random", parsedOptions);
+    const result = await this.fetch<ApiResponse.RandomEpisodes>("/episodes/random", parsedOptions);
+
+    track("Random Episodes", {
+      max: options.max,
+      lang: ensureArray(options.lang),
+      category: ensureArray(options.cat),
+      notCategory: ensureArray(options.notcat),
+      count: result.count,
+      length: result.episodes.length,
+      status: result.status,
+    });
+
+    return result;
   }
 
   /** Get all the metadata for a single episode by passing its id. */
-  public episodeById(id: number): Promise<ApiResponse.EpisodeById> {
-    return this.fetch("/episodes/byid", { id });
+  public async episodeById(
+    id: number,
+    options: { fulltext?: boolean } = {}
+  ): Promise<ApiResponse.EpisodeById> {
+    const result = await this.fetch<ApiResponse.EpisodeById>("/episodes/byid", { id, ...options });
+
+    track("Episode by ID", {
+      id,
+      fulltext: options.fulltext,
+      status: result.status,
+    });
+
+    return result;
   }
   // #endregion
 
-  public stats(): Promise<ApiResponse.Stats> {
-    return this.fetch("/stats/current");
+  public async stats(): Promise<ApiResponse.Stats> {
+    const result = await this.fetch<ApiResponse.Stats>("/stats/current");
+
+    track("Stats", {
+      ...result.stats,
+      status: result.status,
+    });
+
+    return result;
   }
 }
 
