@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import fetch from "node-fetch";
+import fetch from "isomorphic-fetch";
 import dotEnv from "dotenv";
 import { pick } from "ramda";
 
