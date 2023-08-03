@@ -292,6 +292,8 @@ export namespace ApiResponse {
     };
   }
 
+  export type Trending = RecentFeeds;
+
   export interface Categories {
     status: ApiResponse.Status;
     feeds: Array<PIApiCategory>;
