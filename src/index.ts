@@ -139,7 +139,7 @@ class PodcastIndexClient {
       endpoint,
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      ...("status" in result ? { status: result.status } : undefined),
+      ...("status" in result ? { status: result.status as string } : undefined),
     });
 
     return result;
@@ -472,6 +472,7 @@ class PodcastIndexClient {
     return {
       ...result,
       feeds: result.feeds
+        // eslint-disable-next-line sonarjs/no-identical-functions
         .map((feed) => {
           if (!feed.categories) {
             return { ...feed, categories: {} };
