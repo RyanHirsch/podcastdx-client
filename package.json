@@ -1,6 +1,6 @@
 {
   "name": "podcastdx-client",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "prettier:check": "yarn prettier:base -- --list-different \"src/**/*.{ts,tsx}\"",
     "prettier:write": "yarn prettier:base -- --write \"src/**/*.{ts,tsx}\"",
     "start": "node dist/index.js",
-    "prepublishOnly": "yarn lint && yarn test && yarn build && yarn validate && ./scripts/publish.sh",
+    "prepublishOnly": "yarn lint && yarn test && yarn build",
     "postpublish": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag v$PACKAGE_VERSION && git push --tags",
     "prebuild": "rimraf dist",
     "build": "tsc",
