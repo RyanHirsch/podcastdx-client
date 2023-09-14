@@ -413,6 +413,75 @@ class PodcastIndexClient {
 
     return result;
   }
+
+  /**
+   * This call returns the podcasts/feeds that in the index that are trending.
+   *
+   * @param options additional api options
+   */
+  public async trending(
+    options: {
+      /** Max number of items to return, defaults to 40 */
+      max?: number;
+      /** You can specify a hard-coded unix timestamp, or a negative integer that represents a number of seconds prior to now. Either way you specify, the search will start from that time and only return feeds updated since then. */
+      since?: number;
+      /** specifying a language code (like “en”) will return only feeds having that specific language. */
+      lang?: string | string[];
+      /** You can pass multiple of these to form an array. The category ids given will be excluded from the result set. */
+      notCategory?: string[] | number[] | string | number;
+      /** You can pass multiple of these to form an array. It will take precedent over the notCategory[] array, and instead only show you feeds with those categories in the result set. These values are OR'd */
+      category?: string[] | number[] | string | number;
+    } = {}
+  ): Promise<ApiResponse.Trending> {
+    const apiOptions: Record<string, string | number | undefined> = {
+      max: options.max ?? 40,
+      ...pick(["since"], options),
+    };
+
+    if (options.lang) {
+      if (Array.isArray(options.lang)) {
+        apiOptions.lang = options.lang.join(",");
+      } else {
+        apiOptions.lang = options.lang;
+      }
+    }
+    if (options.notCategory) {
+      apiOptions.notcat = Array.isArray(options.notCategory)
+        ? options.notCategory.join(",")
+        : options.notCategory;
+    }
+
+    if (options.category) {
+      apiOptions.cat = Array.isArray(options.category)
+        ? options.category.join(",")
+        : options.category;
+    }
+
+    const result = await this.fetch<ApiResponse.Trending>("/podcasts/trending", apiOptions);
+
+    track("Trending Feeds", {
+      max: options.max,
+      lang: ensureArray(options.lang),
+      category: ensureArray(options.category),
+      notCategory: ensureArray(options.notCategory),
+      count: result.count,
+      length: result.feeds.length,
+      status: result.status,
+    });
+
+    return {
+      ...result,
+      feeds: result.feeds
+        .map((feed) => {
+          if (!feed.categories) {
+            return { ...feed, categories: {} };
+          }
+          return feed;
+        })
+        .map((feed) => normalizeKey((lang) => lang.toLowerCase(), "language", feed)),
+    };
+  }
+
   // #endregion
 
   // #region Episodes
