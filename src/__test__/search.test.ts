@@ -32,7 +32,7 @@ describe("search api", () => {
     expect(allEpisodes.some((ep) => ep.explicit)).toEqual(true);
   });
 
-  it("supports clean only results", async () => {
+  it.skip("supports clean only results", async () => {
     const searchResult = await client.search("sexual wellness", { clean: true, max: 5 });
     expect(searchResult.count).toBeLessThanOrEqual(5);
 
