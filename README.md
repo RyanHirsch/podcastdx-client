@@ -11,7 +11,7 @@ JSON Schema generated from the types contained in the project can be found at <h
 ## Installation
 
 ```sh
-npm -i podcastdx-client
+npm i podcastdx-client
 ```
 
 ## Usage
